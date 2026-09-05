@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="The Tampa Bay Rebuttal">
+<meta property="og:description" content="A fifteen-sheet response to a thirteen-slide deck. Hear me out, parce.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230F1D2D%27/%3E%3Cpath d=%27M16 7 L26 25 H6 Z%27 fill=%27%23E14B63%27/%3E%3C/svg%3E">
+<title>The Tampa Bay Rebuttal</title>
+<meta name="description" content="A sheet-for-slide response to the Jacksonville deck.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#0F1D2D;
+  --sheet:#132639;
+  --sheet-2:#172C42;
+  --rule:#22374E;
+  --rule-soft:#1B2E43;
+  --paper:#E8EDF0;
+  --ink-2:#A2B5C7;
+  --ink-3:#71899F;
+  --blueprint:#6FBEDC;
+  --straw:#E14B63;
+  --jax:#B8882B;
+  --jax-lit:#E9B140;
+  --tpa:#35A18F;
+  --tpa-lit:#4FC6B0;
+  --mia:#8E82CF;
+  --maxw:1180px;
+  --prose:66ch;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--paper);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:18px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:52px;
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+/* ---------- type roles ---------- */
+h1,h2,h3,.mono,.tag,.eyebrow,.stat-n,.legend,th{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+.mono,.tag,.eyebrow,.cite,.tblock,.axis,.bar-val,.legend{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+h2{
+  font-size:clamp(2rem,5.2vw,3.6rem);
+  font-weight:900;
+  line-height:.98;
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+  text-wrap:balance;
+  margin:0 0 .5rem;
+}
+h3{
+  font-size:.82rem;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--blueprint);
+  margin:2.4rem 0 .7rem;
+}
+p{margin:0 0 1.05rem;max-width:var(--prose)}
+strong{font-weight:600;color:#fff}
+em{font-style:italic;color:var(--paper)}
+a{color:var(--blueprint);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blueprint);outline-offset:3px;border-radius:2px}
+
+.eyebrow{
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 .9rem;font-weight:500;
+}
+.lede{font-size:1.22rem;color:var(--ink-2);max-width:60ch}
+.kicker{
+  font-family:Archivo,sans-serif;font-weight:800;font-size:1.05rem;
+  letter-spacing:-.01em;color:#fff;max-width:var(--prose);
+}
+
+/* ---------- sheet frame ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.6rem)}
+.sheet{
+  border-top:1px solid var(--rule);
+  padding:clamp(3rem,7vw,5.6rem) 0 clamp(2.6rem,6vw,4.4rem);
+}
+.sheet-grid{display:grid;grid-template-columns:120px minmax(0,1fr);gap:clamp(1.2rem,3vw,2.6rem)}
+@media (max-width:820px){.sheet-grid{grid-template-columns:1fr;gap:1.1rem}}
+.rail{position:sticky;top:1.4rem;align-self:start;display:flex;flex-direction:column;gap:.35rem}
+@media (max-width:820px){.rail{position:static;flex-direction:row;align-items:baseline;gap:.8rem}}
+.tag{
+  font-size:1rem;font-weight:600;letter-spacing:.06em;color:var(--paper);
+  border-left:2px solid var(--straw);padding-left:.5rem;
+}
+.ref{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);padding-left:.6rem;line-height:1.5}
+@media (max-width:820px){.ref{padding-left:0}}
+
+/* ---------- cover ---------- */
+.cover{border-top:none;padding-top:clamp(2.4rem,6vw,4rem)}
+.rev{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--straw);
+  border:1px solid var(--straw);border-radius:2px;padding:.34rem .6rem .3rem;
+  margin-bottom:1.6rem;
+}
+.rev svg{display:block}
+.swap{margin:0 0 1.7rem;display:flex;flex-direction:column;gap:.15rem}
+.swap-line{
+  font-family:Archivo,sans-serif;font-weight:900;
+  font-size:clamp(1.9rem,7.2vw,4.6rem);line-height:1.02;letter-spacing:-.03em;
+  text-transform:uppercase;display:block;
+}
+.swap-old{
+  color:var(--ink-3);
+  text-decoration:line-through;
+  text-decoration-thickness:.055em;
+  text-decoration-color:var(--straw);
+}
+.js .swap-old{animation:strike .5s ease .8s both}
+@keyframes strike{from{text-decoration-color:transparent}to{text-decoration-color:var(--straw)}}
+.swap-new{color:#fff}
+.swap-new .hl{color:var(--tpa-lit)}
+.js .swap-new{animation:rise .6s cubic-bezier(.2,.7,.3,1) 1.15s both}
+@keyframes rise{from{opacity:.25;transform:translateY(.22em)}to{opacity:1;transform:none}}
+.cover-meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  margin-top:2.4rem;border-radius:3px;overflow:hidden;
+}
+.cover-meta div{background:var(--sheet);padding:.85rem .95rem}
+.cover-meta dt{
+  font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 .3rem;
+}
+.cover-meta dd{margin:0;font-family:Archivo,sans-serif;font-weight:600;font-size:.94rem;color:var(--paper);line-height:1.3}
+
+/* ---------- quote of their deck ---------- */
+.theirs{
+  border-left:3px solid var(--jax-lit);
+  background:linear-gradient(90deg,rgba(233,177,64,.09),rgba(233,177,64,0));
+  padding:.85rem 1.1rem;margin:0 0 1.4rem;max-width:var(--prose);border-radius:0 3px 3px 0;
+}
+.theirs .who{
+  font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--jax-lit);display:block;margin-bottom:.3rem;
+}
+.theirs p{margin:0;font-style:italic;color:var(--paper)}
+
+/* ---------- stats ---------- */
+.stat-row{
+  display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden;margin:1.6rem 0;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+}
+.stat{background:var(--sheet);padding:1.05rem 1.1rem}
+.stat-n{
+  font-weight:900;font-size:clamp(1.6rem,4.2vw,2.3rem);line-height:1;
+  letter-spacing:-.025em;font-variant-numeric:tabular-nums;display:block;margin-bottom:.35rem;
+}
+.stat-l{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);line-height:1.45}
+.c-jax{color:var(--jax-lit)}.c-tpa{color:var(--tpa-lit)}.c-mia{color:var(--mia)}
+.c-straw{color:var(--straw)}.c-blue{color:var(--blueprint)}
+
+.hero-stat{
+  border:1px solid var(--rule);border-radius:3px;background:var(--sheet-2);
+  padding:1.5rem 1.4rem;margin:1.8rem 0;display:flex;flex-wrap:wrap;
+  align-items:baseline;gap:.3rem 1.3rem;
+}
+.hero-stat b{
+  font-family:Archivo,sans-serif;font-weight:900;font-size:clamp(3rem,11vw,5.2rem);
+  line-height:.9;letter-spacing:-.035em;color:var(--tpa-lit);font-variant-numeric:tabular-nums;
+}
+.hero-stat span{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.06em;
+  color:var(--ink-2);max-width:34ch;line-height:1.55;text-transform:uppercase}
+
+/* ---------- charts ---------- */
+figure{margin:1.8rem 0;border:1px solid var(--rule);border-radius:3px;background:var(--sheet);padding:1.2rem 1.2rem 1rem}
+figcaption{
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);margin-top:.9rem;line-height:1.55;
+  border-top:1px solid var(--rule-soft);padding-top:.7rem;
+}
+.fig-t{font-family:Archivo,sans-serif;font-weight:800;font-size:.95rem;letter-spacing:-.005em;color:#fff;margin:0 0 .15rem}
+.fig-s{font-family:"IBM Plex Mono",monospace;font-size:.67rem;letter-spacing:.07em;color:var(--ink-3);text-transform:uppercase;margin:0 0 1.1rem}
+.legend{display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;font-size:.67rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-2);margin-bottom:1rem}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:.42rem;vertical-align:-1px}
+/* One grid for the whole chart so every row shares the same scale. */
+.bars{
+  display:grid;
+  grid-template-columns:minmax(84px,132px) minmax(0,1fr) max-content;
+  gap:.6rem .7rem;align-items:center;
+}
+.bar-row{display:contents}
+.bar-lab{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.04em;
+  color:var(--ink-2);text-align:right;line-height:1.25}
+.bar-scale{height:22px;min-width:0}
+.bar-fill{
+  height:22px;border-radius:0 4px 4px 0;width:var(--w);
+  transition:width .9s cubic-bezier(.2,.75,.3,1);
+}
+.js .reveal .bar-fill{width:0}
+.js .reveal.in .bar-fill{width:var(--w)}
+.bar-val{
+  font-family:"IBM Plex Mono",monospace;font-size:.76rem;font-weight:500;color:var(--paper);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.bar-note{font-style:normal;font-size:.66rem;color:var(--ink-3);margin-left:.4rem}
+@media (max-width:540px){
+  .bars{grid-template-columns:minmax(62px,88px) minmax(0,1fr) max-content;gap:.5rem .45rem}
+  .bar-lab{font-size:.62rem}
+  .bar-val{font-size:.68rem}
+  .bar-note{display:none}
+}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.gapline{
+  margin-top:.9rem;border-top:1px dashed var(--rule);padding-top:.75rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-2);letter-spacing:.04em;
+}
+.gapline b{color:var(--straw);font-weight:600}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid var(--rule);border-radius:3px}
+table{border-collapse:collapse;width:100%;min-width:480px;background:var(--sheet)}
+th,td{padding:.66rem .85rem;text-align:left;border-bottom:1px solid var(--rule-soft);font-size:.88rem}
+th{
+  font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;background:var(--sheet-2);white-space:nowrap;
+}
+td{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--paper)}
+td:first-child{font-family:"Source Serif 4",serif;color:var(--ink-2)}
+tr:last-child td{border-bottom:none}
+.win{color:var(--tpa-lit);font-weight:600}
+.lose{color:var(--jax-lit);font-weight:600}
+.tie{color:var(--ink-3)}
+
+/* ---------- menus / lists ---------- */
+.menu{
+  display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden;margin:1.6rem 0;
+  grid-template-columns:repeat(auto-fit,minmax(238px,1fr));
+}
+.menu article{background:var(--sheet);padding:1.05rem 1.1rem;display:flex;flex-direction:column;gap:.3rem}
+.menu h4{
+  font-family:Archivo,sans-serif;font-weight:800;font-size:.98rem;margin:0;
+  letter-spacing:-.005em;color:#fff;text-transform:uppercase;
+}
+.menu .px{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.07em;color:var(--tpa-lit)}
+.menu p{margin:0;font-size:.92rem;color:var(--ink-2);line-height:1.5;max-width:none}
+
+.chips{display:flex;flex-wrap:wrap;gap:.42rem;margin:1.2rem 0 .4rem;padding:0;list-style:none}
+.chips li{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.03em;
+  border:1px solid var(--rule);border-radius:2px;padding:.3rem .55rem;color:var(--ink-2);background:var(--sheet);
+}
+.chips li.star{border-color:var(--straw);color:#fff;background:rgba(225,75,99,.13)}
+.chips li.dim{color:var(--ink-3);border-style:dashed}
+
+.concede{list-style:none;padding:0;margin:1.4rem 0;display:flex;flex-direction:column;gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.concede li{background:var(--sheet);padding:.95rem 1.1rem;max-width:none}
+.concede b{
+  display:block;font-family:Archivo,sans-serif;font-weight:800;font-size:.86rem;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--jax-lit);margin-bottom:.25rem;
+}
+.concede span{font-size:.95rem;color:var(--ink-2);line-height:1.55;display:block;max-width:74ch}
+
+/* ---------- flights panel ---------- */
+.vs{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;
+  overflow:hidden;margin:1.7rem 0;grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+.vs > div{background:var(--sheet);padding:1.15rem 1.15rem 1.25rem}
+.vs .hd{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem}
+.route{display:flex;align-items:center;gap:.45rem;margin-bottom:.7rem;flex-wrap:wrap}
+.node{font-family:Archivo,sans-serif;font-weight:900;font-size:1.28rem;letter-spacing:.01em;color:#fff}
+.leg{flex:1 1 34px;min-width:34px;height:2px;background:var(--tpa);border-radius:2px}
+.leg.bad{background:var(--jax);flex-basis:22px;min-width:22px}
+.node.stop{
+  font-size:.74rem;font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--jax-lit);
+  border:1px solid var(--jax);border-radius:2px;padding:.16rem .34rem;
+}
+.vs .big{font-family:Archivo,sans-serif;font-weight:900;font-size:2rem;line-height:1;
+  letter-spacing:-.03em;margin-bottom:.3rem}
+.vs p{font-size:.9rem;color:var(--ink-2);margin:0;max-width:none;line-height:1.55}
+
+/* ---------- close ---------- */
+.close h2{font-size:clamp(2.2rem,7.5vw,4.6rem)}
+.close .swap-new{color:#fff}
+.offer{
+  border:1px solid var(--straw);border-radius:3px;background:rgba(225,75,99,.08);
+  padding:1.3rem 1.3rem;margin:1.9rem 0 0;
+}
+.offer h4{font-family:Archivo,sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--straw);margin:0 0 .55rem}
+.offer p{margin:0 0 .7rem;max-width:64ch}
+.offer p:last-child{margin-bottom:0}
+
+/* ---------- sources ---------- */
+ol.src{counter-reset:s;list-style:none;padding:0;margin:1.4rem 0 0;display:flex;flex-direction:column;gap:.7rem}
+ol.src li{
+  counter-increment:s;position:relative;padding-left:2.3rem;font-size:.87rem;
+  color:var(--ink-2);line-height:1.55;max-width:82ch;
+}
+ol.src li::before{
+  content:counter(s,decimal-leading-zero);position:absolute;left:0;top:.12rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:2px;padding:.08rem .3rem;
+}
+ol.src a{word-break:break-word}
+.cite{font-size:.62rem;color:var(--ink-3);vertical-align:super;text-decoration:none;margin-left:.15rem}
+.cite:hover{color:var(--blueprint)}
+
+/* ---------- title block ---------- */
+.tblock{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:rgba(10,20,31,.93);backdrop-filter:blur(9px);
+  border-top:1px solid var(--rule);
+  display:flex;align-items:center;gap:0;
+  font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  height:52px;overflow:hidden;
+}
+.tblock > div{padding:0 clamp(.6rem,2vw,1.1rem);border-right:1px solid var(--rule);
+  height:100%;display:flex;flex-direction:column;justify-content:center;gap:.12rem;white-space:nowrap}
+.tblock > div:last-child{border-right:none;margin-left:auto}
+.tblock b{color:var(--paper);font-weight:600;font-size:.72rem;letter-spacing:.06em}
+.tblock .hide-s{display:flex}
+@media (max-width:720px){.tblock .hide-s{display:none}}
+footer{padding:2.4rem 0 1.4rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.8rem}
+footer p{max-width:74ch}
+
+@media print{
+  html,body{
+    background:var(--ground)!important;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    font-size:10.5pt;padding-bottom:0;
+  }
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{margin:0}
+  .tblock{display:none}
+  .rail{position:static;flex-direction:row;align-items:baseline;gap:.8rem}
+  .sheet-grid{grid-template-columns:1fr;gap:.5rem}
+  .wrap{padding:0;max-width:none}
+  .sheet{break-before:page;page-break-before:always;border-top:none;padding:15mm 13mm 12mm}
+  .sheet.cover{break-before:auto;page-break-before:auto}
+  footer{padding:10mm 13mm}
+  h2{font-size:23pt}
+  .swap-line{font-size:27pt}
+  .hero-stat b{font-size:44pt}
+  .stat-n{font-size:19pt}
+  figure,.stat-row,.menu,.vs,.tbl-wrap,.hero-stat,.offer,.concede,.cover-meta,.theirs{
+    break-inside:avoid;page-break-inside:avoid;
+  }
+  ol.src li,.menu article,.concede li{break-inside:avoid;page-break-inside:avoid}
+  .bar-fill{width:var(--w)!important}
+  a{color:var(--blueprint)!important;text-decoration:none}
+  footer{break-before:auto}
+}</style>
+</head>
+<body>
+
+<main>
+<div class="wrap">
+
+<!-- ============ COVER ============ -->
+<section class="sheet cover" id="a00">
+  <span class="rev">
+    <svg width="11" height="10" viewBox="0 0 11 10" aria-hidden="true"><path d="M5.5 0 11 10H0z" fill="currentColor"/></svg>
+    Revision 1 &nbsp;·&nbsp; issued for review
+  </span>
+  <p class="eyebrow">In response to the drawing set titled &ldquo;Miami &rarr; Jacksonville, Parce&rdquo;, 13 sheets, dated 4 September 2026</p>
+  <div class="swap">
+    <span class="swap-line swap-old">Miami &rarr; Jacksonville</span>
+    <span class="swap-line swap-new">Miami &rarr; <span class="hl">Tampa Bay</span></span>
+  </div>
+  <p class="lede">Diego. Naty. That is a genuinely good deck. I read all thirteen slides twice. It is right about almost everything, and it still points you at the wrong city.</p>
+  <p class="lede">Here is the same argument with the third option left in.</p>
+  <dl class="cover-meta">
+    <div><dt>Project</dt><dd>Getting you out of Miami</dd></div>
+    <div><dt>Sheets</dt><dd>15, in reply to 13</dd></div>
+    <div><dt>Prepared by</dt><dd>The friends who already lived in Jacksonville</dd></div>
+    <div><dt>Issued</dt><dd>5 September 2026</dd></div>
+  </dl>
+</section>
+
+<!-- ============ A-01 ============ -->
+<section class="sheet" id="a01">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-01</span><span class="ref">answers slide 01–02</span></div>
+  <div>
+    <p class="eyebrow">Where we agree</p>
+    <h2>Agreed. Leave Miami.</h2>
+    <p class="lede">This is not a defense of Miami. I am not going to tell you the housing math is fine, because it is not fine.</p>
+    <div class="theirs">
+      <span class="who">Jacksonville deck &middot; slide 02</span>
+      <p>&ldquo;Trade some Miami intensity for space, optionality and family bandwidth.&rdquo;</p>
+    </div>
+    <p>Correct. Every word. A thirty-seven-year-old architect with a wife and a five-year-old should not be handing that much of his income to a landlord or a lender so that he can be near a nightclub he has not been inside since 2019.</p>
+    <p>So we agree on the problem, and we agree on roughly ninety percent of that deck. What follows is the other ten percent, and the other ten percent is the whole move.</p>
+    <p class="kicker">It compares two cities. Florida has more than two cities.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-02 — THE CENTRAL MOVE ============ -->
+<section class="sheet" id="a02">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-02</span><span class="ref">answers slide 04</span></div>
+  <div>
+    <p class="eyebrow">The column nobody ran</p>
+    <h2>Same source.<br>Same day.<br>One more city.</h2>
+    <p class="lede">Slide 4 cites Livingcost.org, updated 21 June 2026, for the cost of raising a family. I opened the identical page. I changed one city in the URL.</p>
+
+    <figure>
+      <p class="fig-t">Estimated monthly cost, family of four</p>
+      <p class="fig-s">Livingcost.org &middot; updated 21 June 2026 &middot; the deck&rsquo;s own source, its own date</p>
+      <div class="legend">
+        <span><i style="background:var(--mia)"></i>Miami</span>
+        <span><i style="background:var(--tpa)"></i>Tampa</span>
+        <span><i style="background:var(--jax)"></i>Jacksonville</span>
+      </div>
+      <div class="bars reveal">
+        <div class="bar-row">
+          <span class="bar-lab">Miami</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:100%;background:var(--mia)"></div></div><span class="bar-val">$7,364</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Tampa</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:78.7%;background:var(--tpa)"></div></div><span class="bar-val">$5,797</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Jacksonville</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:69.9%;background:var(--jax)"></div></div><span class="bar-val">$5,144<em class="bar-note">&larr; slide 4&rsquo;s figure</em></span>
+        </div>
+      </div>
+      <p class="gapline">Miami &rarr; Jacksonville saves <b>$2,220</b> a month. Miami &rarr; Tampa saves <b>$1,567</b> a month.</p>
+      <figcaption>Scale runs 0 to $7,364. All three figures from the same comparison tool on the same update date.<a class="cite" href="#src">[3]</a></figcaption>
+    </figure>
+
+    <div class="hero-stat">
+      <b>70.6%</b>
+      <span>of the savings the Jacksonville deck promised, kept &mdash; without moving six hours farther from Miami</span>
+    </div>
+
+    <p>That is the entire rebuttal in one number. The deck sells an escape from Miami prices. Tampa delivers seven-tenths of that escape. The remaining three-tenths is what the rest of these sheets is about, and I am going to price it honestly.</p>
+
+    <p class="kicker">Jacksonville is cheaper than Tampa by $653 a month. I am not going to pretend otherwise. I am going to tell you what that $653 is buying.</p>
+
+    <div class="stat-row">
+      <div class="stat"><span class="stat-n c-straw">$653</span><span class="stat-l">More per month<br>in Tampa</span></div>
+      <div class="stat"><span class="stat-n c-tpa">+$518</span><span class="stat-l">Higher median<br>after-tax pay in Tampa</span></div>
+      <div class="stat"><span class="stat-n c-blue">$135</span><span class="stat-l">Actual monthly gap<br>after the raise</span></div>
+    </div>
+    <p>Median after-tax salary is $3,945 in Jacksonville and $4,463 in Tampa.<a class="cite" href="#src">[3]</a> Same source. Roughly eighty percent of the cost difference is absorbed by the fact that Tampa pays people more.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-03 ============ -->
+<section class="sheet" id="a03">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-03</span><span class="ref">answers slide 03</span></div>
+  <div>
+    <p class="eyebrow">The money slide, audited</p>
+    <h2>It picked the easiest comparison in Florida.</h2>
+    <p class="lede">Slide 3 puts Jacksonville next to Miami and lets a $339,830 gap do the persuading. It is a real gap, honestly sourced. It is also the one matchup no Florida city can lose.</p>
+    <p>Here is what happens when you put Jacksonville next to the places I am actually proposing. Same source for all five, so nobody gets to pick a favorable methodology.</p>
+
+    <figure>
+      <p class="fig-t">Typical home value</p>
+      <p class="fig-s">Zillow Home Value Index &middot; 2026 &middot; one source, five places</p>
+      <div class="legend">
+        <span><i style="background:var(--mia)"></i>What you&rsquo;re leaving</span>
+        <span><i style="background:var(--tpa)"></i>Tampa Bay</span>
+        <span><i style="background:var(--jax)"></i>Jacksonville</span>
+      </div>
+      <div class="bars reveal">
+        <div class="bar-row">
+          <span class="bar-lab">Miami</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:100%;background:var(--mia)"></div></div><span class="bar-val">$581,864</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Lutz</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:84.5%;background:var(--tpa)"></div></div><span class="bar-val">$491,899</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Brandon</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:61.3%;background:var(--tpa)"></div></div><span class="bar-val">$356,875</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Plant City</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:59.1%;background:var(--tpa)"></div></div><span class="bar-val">$343,765</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Jacksonville</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:50.9%;background:var(--jax)"></div></div><span class="bar-val">$295,910</span>
+        </div>
+      </div>
+      <p class="gapline">Plant City minus Jacksonville: <b>$47,855</b>. Miami minus Plant City: <b>$238,099</b>.</p>
+      <figcaption>Scale runs 0 to $581,864. Zillow Home Value Index, a smoothed typical-value measure, chosen because it is published for small cities like Plant City where median-sale figures get thin.<a class="cite" href="#src">[4]</a></figcaption>
+    </figure>
+
+    <p>Jacksonville wins this chart. It wins it by <strong>$47,855</strong>, which at current rates is a couple hundred dollars a month on a note.</p>
+    <p>Against Miami that gap looks like the difference between two lives. Against Plant City it is the difference between two kitchens.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-04 ============ -->
+<section class="sheet" id="a04">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-04</span><span class="ref">the framing device</span></div>
+  <div>
+    <p class="eyebrow">What the difference buys</p>
+    <h2>So what does $653 a month get you?</h2>
+    <p class="lede">Every sheet from here is priced against that number. If Jacksonville&rsquo;s discount is worth more than what follows, take it. It is a real city and that was a real argument.</p>
+    <p>But you should see the other side of the ledger before you sign anything, and the Jacksonville deck never had reason to put it there. This is that list.</p>
+    <ul class="chips">
+      <li class="star">A nonstop flight to Bogotá</li>
+      <li>65 fewer miles to your family</li>
+      <li>An ocean you can get in during February</li>
+      <li>Roughly four times the Colombian population</li>
+      <li>Named cranes instead of a budget line</li>
+      <li>A third of the homicides</li>
+      <li>Orlando in 90 minutes</li>
+      <li>Us, twenty minutes away</li>
+    </ul>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-05 — BOGOTA ============ -->
+<section class="sheet" id="a05">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-05</span><span class="ref">not in the deck</span></div>
+  <div>
+    <p class="eyebrow">The sheet that deck could not draw</p>
+    <h2>Tampa flies to Bogotá.<br>Jacksonville doesn&rsquo;t.</h2>
+    <p class="lede">This is the hardest fact in this document and it is not close. Avianca has flown Tampa to Bogotá nonstop since March 2025. It went daily that October. It now runs about twenty flights a week.</p>
+
+    <div class="vs">
+      <div>
+        <p class="hd">From Tampa</p>
+        <div class="route">
+          <span class="node">TPA</span><span class="leg"></span><span class="node">BOG</span>
+        </div>
+        <p class="big c-tpa">4h 00m</p>
+        <p>Nonstop, Avianca, A320neo. Roughly 20 departures a week. TPA&rsquo;s first scheduled nonstop to South America in nearly fifty years.<a class="cite" href="#src">[5]</a></p>
+      </div>
+      <div>
+        <p class="hd">From Jacksonville</p>
+        <div class="route">
+          <span class="node">JAX</span><span class="leg bad"></span><span class="node stop">MIA / ATL / PTY</span><span class="leg bad"></span><span class="node">BOG</span>
+        </div>
+        <p class="big c-jax">No such flight</p>
+        <p>JAX has two international nonstops: San Juan, which is a US territory, and Toronto, which is seasonal. Zero to South America.<a class="cite" href="#src">[6]</a></p>
+      </div>
+    </div>
+
+    <p>And it is not a gap anyone is racing to close. Jacksonville&rsquo;s airport authority commissioned a study on which nonstop international routes to chase next. The shortlist came back Dublin, Frankfurt, London, Paris, Reykjavík.<a class="cite" href="#src">[6]</a></p>
+    <p class="kicker">Not one South American city. Jacksonville is not planning to fly to your family. It is planning to fly to Iceland.</p>
+    <p>This is the sheet I would read twice. It is not about vacations. It is about whether family comes for a long weekend or comes once a year, because a connection through Atlanta quietly turns every visit into a production. Four hours, gate to gate, is a different relationship with the people you love than a connecting itinerary is.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-06 — DISTANCE ============ -->
+<section class="sheet" id="a06">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-06</span><span class="ref">answers slide 10</span></div>
+  <div>
+    <p class="eyebrow">345 versus 346</p>
+    <h2>From Jacksonville, Atlanta is farther than Miami by one mile.</h2>
+    <p class="lede">Slide 10 sells Jacksonville as a launchpad and lists St. Augustine, Amelia Island, Orlando and Savannah. Notice which city is not on that list.</p>
+
+    <figure>
+      <p class="fig-t">Driving distance to the people you are leaving behind</p>
+      <p class="fig-s">Road miles, Miami unless noted</p>
+      <div class="bars reveal">
+        <div class="bar-row">
+          <span class="bar-lab">Jax &rarr; Atlanta</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:100%;background:var(--jax)"></div></div><span class="bar-val">346 mi</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Jax &rarr; Miami</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:99.7%;background:var(--jax)"></div></div><span class="bar-val">345 mi</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Tampa &rarr; Miami</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:80.9%;background:var(--tpa)"></div></div><span class="bar-val">280 mi<em class="bar-note">≈3h 55m</em></span>
+        </div>
+      </div>
+      <figcaption>Scale runs 0 to 346 miles. Driving distance, not straight-line.<a class="cite" href="#src">[7]</a></figcaption>
+    </figure>
+
+    <p>Move to Jacksonville and Georgia sits as close to you as everyone you are leaving in Miami. That is not a joke at anyone&rsquo;s expense. It is a coincidence of geography that happens to be perfect.</p>
+    <p>Tampa is a Saturday-morning drive from Miami. Leave after breakfast, be there for lunch. Jacksonville is a whole day, in each direction, which quietly turns every visit into a three-day commitment and turns most of them into no visit at all.</p>
+    <p class="kicker">And the rest of the state opens up: Orlando in about ninety minutes, Sarasota in under an hour, Fort Myers in two.<a class="cite" href="#src">[7]</a></p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-07 — COLOMBIAN ============ -->
+<section class="sheet" id="a07">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-07</span><span class="ref">answers slide 08</span></div>
+  <div>
+    <p class="eyebrow">The Colombian question, answered</p>
+    <h2>&ldquo;Enough Colombian food to survive.&rdquo;</h2>
+    <p class="lede">Survive. That is slide 12&rsquo;s own word, in the list of what you are really buying. An honest word, and I want the record to show that the ceiling being offered here is <em>survival</em>.</p>
+    <div class="theirs">
+      <span class="who">Jacksonville deck &middot; slide 08</span>
+      <p>&ldquo;Miami has the deeper Colombian ecosystem. Jax gives you enough connection while buying back space, cost and pace.&rdquo;</p>
+    </div>
+    <p>It names three. Delicias Colombianas, Antojitos, Salento. That is an honest list, and it is also close to the complete list, which is the problem.</p>
+
+    <p>Tampa Bay and greater Orlando together hold roughly <strong>85,000 Colombians</strong>, described in the migration literature as the second-largest concentration in the United States after Miami. Florida holds about thirty percent of the entire Colombian diaspora, and the three named centers are Miami&ndash;Fort Lauderdale, Orlando&ndash;Kissimmee, and Tampa Bay.<a class="cite" href="#src">[8]</a></p>
+    <p class="kicker">Jacksonville appears on none of those lists.</p>
+
+    <h3>Within thirty minutes of our house</h3>
+    <ul class="chips">
+      <li class="star">Los 3 Parces &middot; Brandon</li>
+      <li>Ricopan Bakehouse &middot; Brandon</li>
+      <li>Ricopan Bakehouse &middot; Riverview</li>
+      <li>Ricopan Bakehouse &middot; Tampa</li>
+      <li>Aleida&rsquo;s Kitchen &middot; Brandon</li>
+      <li>La Pequeña Colombia &middot; Brandon</li>
+      <li>Rappi Colombian Food &middot; Brandon</li>
+      <li>Cali Aji &middot; Riverview</li>
+      <li>Mi Carreta &middot; Tampa</li>
+      <li>El Cafetal &middot; Tampa</li>
+      <li>El Fogón Colombiano &middot; Tampa</li>
+      <li>Monserrate &middot; Tampa</li>
+      <li>Restaurante La Hacienda &middot; Tampa</li>
+      <li>Antojitos Latin Cravings &middot; Tampa</li>
+      <li>Santa Ana&rsquo;s Bakery &middot; Town &rsquo;n Country</li>
+    </ul>
+    <p style="margin-top:1.3rem">Fifteen, and I stopped writing, not because I ran out.</p>
+
+    <div class="hero-stat">
+      <b>Los 3 Parces</b>
+      <span>is a real Colombian restaurant in Brandon, Florida, about twenty minutes from our front door</span>
+    </div>
+    <p>Diego. The word <em>parce</em> is on the cover of that deck. There is a restaurant named after it twenty minutes from here. The pitch is quoting our neighborhood to sell you a different one.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-08 — THE OCEAN ============ -->
+<section class="sheet" id="a08">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-08</span><span class="ref">answers slide 09</span></div>
+  <div>
+    <p class="eyebrow">You still live in Florida, part two</p>
+    <h2>That ocean is 58 degrees in February.</h2>
+    <p class="lede">Slide 9 is titled &ldquo;The ocean didn&rsquo;t stay in Miami,&rdquo; which is true, and then offers &ldquo;surf-and-bike coastal living,&rdquo; which is the phrase you reach for when the water is cold.</p>
+
+    <figure>
+      <p class="fig-t">Average water temperature, February</p>
+      <p class="fig-s">Degrees Fahrenheit &middot; the month that decides whether a beach is a beach</p>
+      <div class="bars reveal">
+        <div class="bar-row">
+          <span class="bar-lab">Clearwater, Gulf</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:100%;background:var(--tpa)"></div></div><span class="bar-val">63.0&deg;F</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Jax Beach, Atlantic</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:93.3%;background:var(--jax)"></div></div><span class="bar-val">58.8&deg;F</span>
+        </div>
+      </div>
+      <figcaption>Scale runs 0 to 63°F. At the same latitude the Gulf runs roughly 3 to 5 degrees warmer than the Atlantic through the winter.<a class="cite" href="#src">[9]</a></figcaption>
+    </figure>
+
+    <p>Four degrees does not sound like an argument until you are the parent standing in it. But temperature is the smaller half of this.</p>
+    <p>The Gulf here is shallow, flat and slow. A five-year-old can walk out a long way and the water stays at his chest. North Florida&rsquo;s Atlantic has surf, and shore break, and rip currents, which is genuinely wonderful if you are twenty-two with a board and genuinely tiring if you are the one watching a kindergartener in it.</p>
+    <p class="kicker">That is a beach for the man you were. This is a beach for the man with a five-year-old.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-09 — ARCHITECT ============ -->
+<section class="sheet" id="a09">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-09</span><span class="ref">answers slide 05</span></div>
+  <div>
+    <p class="eyebrow">For the architect</p>
+    <h2>That was a budget line. These are cranes.</h2>
+    <p class="lede">Slide 5 leads with $1.23 billion, Jacksonville&rsquo;s five-year capital improvement plan. That is a line in a municipal budget. It is not a project, it is a projection, and you have been in this business long enough to know the difference.</p>
+    <p>Here is what is under construction in Tampa Bay right now, by name.</p>
+
+    <div class="menu">
+      <article>
+        <h4>Water Street Tampa</h4>
+        <span class="px">Phase Two &middot; under way</span>
+        <p>Roughly a $3 billion district. Phase Two extends it across six new blocks, with an entertainment district and a 3,500-seat music venue unveiled in May 2026.</p>
+      </article>
+      <article>
+        <h4>Gasworx</h4>
+        <span class="px">15 blocks &middot; delivering 2026–27</span>
+        <p>Stitches Ybor City to downtown and Channelside. The Stevedore opens this year, the signature office tower completes later in 2026, a 28,000 sf marketplace lands in early 2027.</p>
+      </article>
+      <article>
+        <h4>Tampa General Hospital</h4>
+        <span class="px">Expansion &middot; active</span>
+        <p>Major healthcare work on a constrained island site. The kind of program that keeps a firm fed for years.</p>
+      </article>
+      <article>
+        <h4>Midtown Tampa</h4>
+        <span class="px">Phase Two</span>
+        <p>Second phase of the mixed-use district between downtown and Westshore.</p>
+      </article>
+      <article>
+        <h4>Westshore Marina District</h4>
+        <span class="px">Build-out</span>
+        <p>Waterfront residential and mixed-use, still filling in.</p>
+      </article>
+      <article>
+        <h4>Brandon &amp; Wesley Chapel</h4>
+        <span class="px">Suburban corridors</span>
+        <p>Heavy multifamily and mixed-use volume. Unglamorous, continuous, and it pays.</p>
+      </article>
+    </div>
+    <p style="margin-top:.4rem">All of it verifiable, all of it named, all of it hiring.<a class="cite" href="#src">[10]</a></p>
+
+    <h3>If you are bringing your own work</h3>
+    <p>Then ignore this entire sheet, because it does not apply to you, and go back to A-05. If your practice travels with you, the only thing your city owes you is a good airport and a short drive to your clients, and Tampa wins both of those outright.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-10 — WHERE YOU LIVE ============ -->
+<section class="sheet" id="a10">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-10</span><span class="ref">answers slide 06</span></div>
+  <div>
+    <p class="eyebrow">Pick your version</p>
+    <h2>Six answers, and none of them are a condo.</h2>
+    <p class="lede">Slide 6 gives you four flavors of Jacksonville, and it is a good slide. Here are ours, weighted the way you would actually weight them: a yard, a decent school, and a drive that does not ruin the day.</p>
+
+    <div class="menu">
+      <article>
+        <h4>Plant City</h4>
+        <span class="px">≈ $343,765</span>
+        <p>Where we are. Actual downtown, brick streets, strawberry fields, and the closest thing to Jacksonville&rsquo;s price with none of Jacksonville&rsquo;s distance. Twenty minutes from Brandon, forty from downtown Tampa.</p>
+      </article>
+      <article>
+        <h4>Brandon</h4>
+        <span class="px">≈ $356,875</span>
+        <p>The practical middle. Everything is fifteen minutes away, including most of the Colombian food on sheet A-07.</p>
+      </article>
+      <article>
+        <h4>Riverview / FishHawk</h4>
+        <span class="px">Newer builds</span>
+        <p>Master-planned, family-heavy, the kind of place where a five-year-old ends up with eleven friends on the same street.</p>
+      </article>
+      <article>
+        <h4>Lutz</h4>
+        <span class="px">≈ $491,899</span>
+        <p>The premium suburb. Bigger lots, older oaks, strong schools, and a straight shot down the Veterans to the airport.</p>
+      </article>
+      <article>
+        <h4>Seminole Heights</h4>
+        <span class="px">If you want fabric</span>
+        <p>Bungalows, front porches, walkable blocks, an actual restaurant scene. Riverside and Avondale have nothing on it, and it is fifteen minutes from downtown.</p>
+      </article>
+      <article>
+        <h4>Ybor City</h4>
+        <span class="px">For the nerd in you</span>
+        <p>A national historic landmark district built by Cuban and Spanish and Italian cigar workers, now being sewn back into downtown by Gasworx. Bring a camera.</p>
+      </article>
+    </div>
+    <p style="margin-top:.4rem">And St. Petersburg exists and is lovely and I am deliberately not pitching it, because you two want a yard and a garage, not a walk-up near a pier.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-11 — SAFETY ============ -->
+<section class="sheet" id="a11">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-11</span><span class="ref">not in the deck</span></div>
+  <div>
+    <p class="eyebrow">The sheet nobody enjoys</p>
+    <h2>Both cities are getting safer. One is starting further back.</h2>
+    <p class="lede">I want to be careful here, because this is the argument people overplay, and Jacksonville&rsquo;s trend is genuinely good news.</p>
+
+    <div class="stat-row">
+      <div class="stat"><span class="stat-n c-jax">74</span><span class="stat-l">Murders in<br>Jacksonville, 2025</span></div>
+      <div class="stat"><span class="stat-n c-tpa">17</span><span class="stat-l">Homicides in<br>Tampa, 2025</span></div>
+      <div class="stat"><span class="stat-n c-blue">&minus;31%</span><span class="stat-l">Tampa crime rate,<br>2025 vs 2024</span></div>
+    </div>
+
+    <p>Jacksonville&rsquo;s murder count fell below one hundred in 2024 for the first time since 2011, and it fell again in 2025. That is real progress by people working hard at it, and it deserves to be said out loud.<a class="cite" href="#src">[11]</a></p>
+    <p>It is also a count that started above one hundred for thirteen consecutive years. Tampa is a smaller city, so compare rates rather than counts if you want to be rigorous; Tampa&rsquo;s violent crime rate sits marginally below the national average. Jacksonville&rsquo;s sits well above it.</p>
+    <p class="kicker">Neither city is a war zone and nobody should pretend otherwise. But this sheet was not in the deck, and it belongs in the decision.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-12 — NO PROPAGANDA ============ -->
+<section class="sheet" id="a12">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-12</span><span class="ref">answers slide 11</span></div>
+  <div>
+    <p class="eyebrow">No propaganda either</p>
+    <h2>Where Jacksonville actually beats us.</h2>
+    <p class="lede">Slide 11 conceded Miami&rsquo;s wins, and that concession is exactly why the rest of that deck reads as honest. Same rules here. These are real and I am not going to soften them.</p>
+
+    <ul class="concede">
+      <li><b>It is cheaper. Full stop.</b><span>About $48,000 less on a typical house and $653 less a month to run a family. That is a vacation and a car payment every year. If your budget is the binding constraint, Jacksonville wins and you should go.</span></li>
+      <li><b>Less traffic, more room.</b><span>Jacksonville is the largest city by land area in the contiguous United States, and all that space buys lighter roads. Tampa Bay&rsquo;s commutes are genuinely worse and this one is not close.</span></li>
+      <li><b>The Atlantic has waves.</b><span>If Diego ever wants to surf, or the kid does at fourteen, the Gulf will disappoint you roughly three hundred days a year.</span></li>
+      <li><b>St. Augustine is forty-five minutes away.</b><span>The oldest continuously occupied European settlement in the country, on a Saturday, for an architect. That is a genuinely great thing and we do not have an equivalent.</span></li>
+      <li><b>Someone who loves you is already there.</b><span>That is the last line of slide 12 and it is the best line in the deck. It counts. It counted for us too, once, and it is the only item on this list I cannot answer with a number.</span></li>
+    </ul>
+
+    <h3>The storm question, honestly</h3>
+    <p>You are going to raise 2024, and you should. Helene drove record surge into Tampa Bay that September, and Milton came ashore weeks later with a one-in-a-thousand-year rainfall over parts of the bay. That was real, it was frightening, and I am not going to wave it off.</p>
+    <p>Here is the context the coverage left out. Milton made landfall at Siesta Key, south of the bay, and it was the first hurricane to strike the Tampa Bay region in more than a century. The last direct hit on Tampa Bay by a major hurricane was <strong>1921</strong>, near Tarpon Springs. One hundred and three years between them.<a class="cite" href="#src">[12]</a></p>
+    <p>And the people who price this risk for a living have already run the comparison you are about to run.</p>
+
+    <figure>
+      <p class="fig-t">Average annual homeowners premium</p>
+      <p class="fig-s">Single-family home &middot; 2026 county ranges</p>
+      <div class="bars reveal">
+        <div class="bar-row">
+          <span class="bar-lab">Duval &middot; Jax</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:100%;background:var(--jax)"></div></div>
+          <span class="bar-val">$3,800&ndash;$5,500</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lab">Tampa Bay</span>
+          <div class="bar-scale"><div class="bar-fill" style="--w:92.7%;background:var(--tpa)"></div></div>
+          <span class="bar-val">$3,285&ndash;$5,100</span>
+        </div>
+      </div>
+      <figcaption>Bars drawn to the top of each county range, scale 0 to $5,500. Coastal addresses in either market pay well above these averages; everything on sheet A-10 is inland.<a class="cite" href="#src">[12]</a></figcaption>
+    </figure>
+
+    <p class="kicker">Jacksonville is not the cheaper insurance market. It is the more expensive one. Plant City sits thirty miles from open water and the premiums reflect it.</p>
+
+    <h3>The scorecard</h3>
+    <div class="tbl-wrap">
+      <table>
+        <caption class="sr-only">Head to head, Tampa Bay versus Jacksonville</caption>
+        <thead><tr><th scope="col">Category</th><th scope="col">Winner</th><th scope="col">How close</th></tr></thead>
+        <tbody>
+          <tr><td>Sticker price of a house</td><td class="lose">Jacksonville</td><td class="tie">By $47,855</td></tr>
+          <tr><td>Monthly cost to run a family</td><td class="lose">Jacksonville</td><td class="tie">By $653, minus a $518 raise</td></tr>
+          <tr><td>Storm risk</td><td class="tie">Toss-up</td><td class="tie">Lower frequency there, lower premiums here</td></tr>
+          <tr><td>Surf</td><td class="lose">Jacksonville</td><td class="tie">Not close</td></tr>
+          <tr><td>Traffic</td><td class="lose">Jacksonville</td><td class="tie">Not close, and we feel it daily</td></tr>
+          <tr><td>Getting to Bogotá</td><td class="win">Tampa Bay</td><td class="tie">Nonstop versus nonexistent</td></tr>
+          <tr><td>Getting to Miami</td><td class="win">Tampa Bay</td><td class="tie">65 miles and about 90 minutes</td></tr>
+          <tr><td>Colombian community</td><td class="win">Tampa Bay</td><td class="tie">Not close</td></tr>
+          <tr><td>Water you can swim in year-round</td><td class="win">Tampa Bay</td><td class="tie">Warmer, and calm enough for a kid</td></tr>
+          <tr><td>Named projects under construction</td><td class="win">Tampa Bay</td><td class="tie">Cranes versus a five-year plan</td></tr>
+          <tr><td>Violent crime</td><td class="win">Tampa Bay</td><td class="tie">Both improving, different starting points</td></tr>
+          <tr><td>Weekend range</td><td class="win">Tampa Bay</td><td class="tie">Center of the state versus a corner</td></tr>
+          <tr><td>Historic downtown for an architect</td><td class="tie">Tie</td><td class="tie">Ybor against St. Augustine is a fair fight</td></tr>
+          <tr><td>Somebody who loves you nearby</td><td class="tie">Tie</td><td class="tie">See sheet A-13</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-13 — CLOSE ============ -->
+<section class="sheet close" id="a13">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-13</span><span class="ref">answers slide 12</span></div>
+  <div>
+    <p class="eyebrow">The final pitch</p>
+    <div class="theirs">
+      <span class="who">Jacksonville deck &middot; slide 12, last line</span>
+      <p>&ldquo;And your friend is already here.&rdquo;</p>
+    </div>
+    <h2>We lived in Jacksonville.<br>Then we moved here.</h2>
+    <p class="lede">That is the whole close and I am not going to dress it up.</p>
+    <p>That deck argues from a brochure, and it argues well. We are arguing from a lease, a mortgage, a moving truck and a decision we made with our own money about where to raise our own kid. We ran the experiment. We had the house, and the beach forty minutes away, and every reason to believe it would be great.</p>
+    <p>Then we packed it up and drove two hundred miles southwest, and we have not spent one evening since wondering whether we got that wrong.</p>
+    <p class="kicker">Everything on these fifteen sheets is a number you can check. This last part is the only thing I am asking you to take on faith, and it is the part I am most sure about.</p>
+
+    <div class="offer">
+      <h4>The actual offer</h4>
+      <p>Come for a weekend. Not a tour, a weekend. Fly into Tampa, four hours from Bogotá whenever family comes, and stay with us in Plant City.</p>
+      <p>Saturday we do Ybor and downtown, and Diego can decide for himself whether there is work here. Sunday morning we take the kids to the Gulf, where the water is flat and warm and comes up to their chests a hundred feet out. Sunday lunch is at Los 3 Parces in Brandon, and I am going to let the name of that restaurant do the closing argument for me.</p>
+      <p>Then drive down to Miami on Sunday evening. It is four hours. You will be home for dinner, which is the entire point.</p>
+    </div>
+
+    <p style="margin-top:1.8rem">And if we are wrong, you will have had a free weekend at the beach and the pleasure of telling us so. Worst case, parce, is not that bad.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-14 — SOURCES ============ -->
+<section class="sheet" id="a14">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-14</span><span class="ref">answers slide 13</span></div>
+  <div id="src">
+    <p class="eyebrow">Receipts</p>
+    <h2>Every number, checked 5 September 2026.</h2>
+    <p class="lede">Slide 13 was called &ldquo;the receipts&rdquo; and it was a good slide. Here are ours. Where I use the Jacksonville deck&rsquo;s figures I have kept its sources, so you can hold both documents open at once.</p>
+    <ol class="src">
+      <li>Redfin, Jacksonville housing market, three months ending July 2026: median sale price $309,845. <em>The deck&rsquo;s source, the deck&rsquo;s figure, accepted.</em></li>
+      <li>Redfin, Miami housing market, three months ending July 2026: median sale price $649,675. <em>The deck&rsquo;s source, the deck&rsquo;s figure, accepted.</em></li>
+      <li>Livingcost.org, Jacksonville versus Tampa, updated 21 June 2026: family of four $5,144 versus $5,797 per month; median after-tax salary $3,945 versus $4,463. The Miami family figure of $7,364 is the deck&rsquo;s own, from the same tool. <a href="https://livingcost.org/cost/jacksonville/tampa">livingcost.org/cost/jacksonville/tampa</a></li>
+      <li>Zillow Home Value Index, 2026: Miami $581,864; Lutz $491,899; Brandon $356,875; Plant City $343,765; Jacksonville $295,910. <a href="https://www.zillow.com/home-values/">zillow.com/home-values</a></li>
+      <li>Tampa International Airport and Avianca: nonstop TPA–BOG launched 30 March 2025 on the A320neo, roughly four hours, daily from October 2025, about twenty weekly flights as of September 2026. <a href="https://news.tampaairport.com/tpa-celebrates-nonstop-service-to-bogota-with-avianca/">news.tampaairport.com</a></li>
+      <li>Jacksonville International Airport international service and route targets, Jacksonville Today, 3 April 2026; Jacksonville Aviation Authority via the Campbell-Hill route study: Dublin, Frankfurt, London, Paris, Reykjavík. <a href="https://jaxtoday.org/2026/04/03/overseas-flights-where-might-you-go-from-jax/">jaxtoday.org</a></li>
+      <li>Driving distances: Jacksonville–Miami 345 mi; Jacksonville–Atlanta 346 mi; Tampa–Miami 280 mi, about 3h55m. Travelmath and Trippy road-distance calculators.</li>
+      <li>Colombian population: roughly 85,000 across the Tampa Bay and greater Orlando metros, second-largest US concentration after Miami; Florida holds about 30% of the US Colombian diaspora. Migration Policy Institute and Latina Republic. <a href="https://www.migrationpolicy.org/article/colombian-immigrants-united-states">migrationpolicy.org</a></li>
+      <li>February water temperature: Clearwater Beach about 63°F; Jacksonville Beach about 58.8°F. NOAA-derived buoy and satellite averages via seatemperature.info and surf-forecast.com.</li>
+      <li>Tampa Bay project pipeline 2026: Water Street Phase Two, Gasworx, Midtown Phase Two, Tampa General expansion, Westshore Marina District. Tampa Bay Business &amp; Wealth, December 2025; Water Street Tampa project progress; Davron 2026 pipeline report.</li>
+      <li>Homicides: Jacksonville 74 in 2025, below 100 in 2024 for the first time since 2011; Tampa 17 in 2025 with the overall crime rate down 31% year over year. City reporting compiled via jaxcrimdefense.com and city-data.</li>
+      <li>Insurance and storms: Hillsborough/Pinellas/Pasco homeowners premiums roughly $3,285–$5,100 a year against Duval County’s $3,800–$5,500. Hurricane Helene, September 2024, $13.9B in damage and record Tampa Bay surge. Hurricane Milton, October 2024, made landfall near Siesta Key, south of Tampa Bay, with one-in-a-thousand-year rainfall over parts of the bay. The last direct hit on Tampa Bay by a major hurricane was the Tarpon Springs storm of 25 October 1921, 103 years earlier. GreatFlorida county rate tables; NOAA National Weather Service Tampa Bay; NOAA National Hurricane Center tropical cyclone reports. <a href="https://www.weather.gov/tbw/hurricane1921">weather.gov/tbw/hurricane1921</a></li>
+    </ol>
+    <p style="margin-top:1.6rem;color:var(--ink-3);font-size:.9rem">Where the two documents disagree on a number, distrust mine first, because I am the one with something to gain. Every figure above is linked or nameable so you can check me. Please check me.</p>
+  </div>
+ </div>
+</section>
+
+<footer>
+  <p>Drawing set issued 5 September 2026 in response to &ldquo;Miami &rarr; Jacksonville, Parce&rdquo; (13 sheets, 4 September 2026). Prepared without the knowledge or consent of its author, who is a good friend, built a genuinely good case, and is wrong about exactly one thing.</p>
+</footer>
+
+</div>
+</main>
+
+<div class="tblock" role="contentinfo">
+  <div><span>Project</span><b>Miami &rarr; Tampa Bay</b></div>
+  <div class="hide-s"><span>Issued for</span><b>Review by Naty &amp; Diego</b></div>
+  <div class="hide-s"><span>Date</span><b>2026-09-05</b></div>
+  <div><span>Sheet</span><b id="sheetno">A-00 / 14</b></div>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+
+// Bars grow from zero when their figure first comes into view.
+var reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.25 });
+  reveals.forEach(function (r) { io.observe(r); });
+} else {
+  reveals.forEach(function (r) { r.classList.add('in'); });
+}
+
+// Title block tracks the sheet you are reading.
+var sheets = Array.prototype.slice.call(document.querySelectorAll('.sheet'));
+var out = document.getElementById('sheetno');
+function currentSheet() {
+  var y = window.scrollY + window.innerHeight * 0.32, id = sheets[0].id;
+  for (var i = 0; i < sheets.length; i++) { if (sheets[i].offsetTop <= y) id = sheets[i].id; }
+  return id.replace('a', 'A-').toUpperCase() + ' / 14';
+}
+var ticking = false;
+function onScroll() {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(function () { out.textContent = currentSheet(); ticking = false; });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
