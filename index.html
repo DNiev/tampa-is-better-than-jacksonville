@@ -53,7 +53,8 @@ body{
 h1,h2,h3,.mono,.tag,.eyebrow,.stat-n,.legend,th{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
 .mono,.tag,.eyebrow,.cite,.tblock,.axis,.bar-val,.legend{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
 h2{
-  font-size:clamp(2rem,5.2vw,3.6rem);
+  overflow-wrap:break-word;
+  font-size:clamp(1.72rem,5.2vw,3.6rem);
   font-weight:900;
   line-height:.98;
   letter-spacing:-.02em;
@@ -116,8 +117,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blueprint);outline-
 .swap{margin:0 0 1.7rem;display:flex;flex-direction:column;gap:.15rem}
 .swap-line{
   font-family:Archivo,sans-serif;font-weight:900;
-  font-size:clamp(1.9rem,7.2vw,4.6rem);line-height:1.02;letter-spacing:-.03em;
-  text-transform:uppercase;display:block;
+  font-size:clamp(1.55rem,7vw,4.6rem);line-height:1.02;letter-spacing:-.03em;
+  text-transform:uppercase;display:block;overflow-wrap:break-word;
 }
 .swap-old{
   color:var(--ink-3);
@@ -336,6 +337,8 @@ ol.src a{word-break:break-word}
 .tblock b{color:var(--paper);font-weight:600;font-size:.72rem;letter-spacing:.06em}
 .tblock .hide-s{display:flex}
 @media (max-width:720px){.tblock .hide-s{display:none}}
+@media (max-width:470px){.tblock .hide-xs{display:none}
+  .tblock{font-size:.58rem}.tblock b{font-size:.66rem}}
 footer{padding:2.4rem 0 1.4rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.8rem}
 footer p{max-width:74ch}
 
@@ -356,7 +359,7 @@ html,body{overflow-x:clip}
 .hero-veil{position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(15,29,45,.62) 0%,rgba(15,29,45,.34) 30%,rgba(15,29,45,.9) 76%,var(--ground) 100%),
   linear-gradient(90deg,rgba(15,29,45,.9) 0%,rgba(15,29,45,.25) 62%,rgba(15,29,45,.6) 100%)}
-.hero .swap-line{font-size:clamp(1.95rem,6.6vw,4.5rem)}
+.hero .swap-line{font-size:clamp(1.6rem,6.4vw,4.5rem)}
 .hero .lede{max-width:54ch;text-shadow:0 1px 24px rgba(6,14,24,.7)}
 .scrollcue{
   display:flex;align-items:center;gap:.6rem;margin-top:2.2rem;
@@ -419,7 +422,7 @@ html,body{overflow-x:clip}
 
 /* ---- maps & drawn routes ---- */
 .mapwrap{position:relative}
-.mapwrap svg{display:block;width:100%;height:auto;overflow:visible}
+.mapwrap svg{display:block;width:100%;height:auto;max-width:100%}
 .fl-land{fill:#16293D;stroke:#2C455F;stroke-width:1.4;stroke-linejoin:round}
 .fl-arc{fill:none;stroke-linecap:round;stroke-width:2.4}
 .fl-arc.tpa{stroke:var(--tpa-lit)}
@@ -1287,7 +1290,7 @@ body.present .parrow{display:flex}
 <button class="parrow next" id="pnext" type="button" aria-label="Next sheet">&#8594;</button>
 
 <div class="tblock" role="contentinfo">
-  <div><span>Project</span><b>Miami &rarr; Tampa Bay</b></div>
+  <div class="hide-xs"><span>Project</span><b>Miami &rarr; Tampa Bay</b></div>
   <div class="hide-s"><span>Issued for</span><b>Review by Naty &amp; Diego</b></div>
   <div class="hide-s"><span>Date</span><b>2026-09-05</b></div>
   <div><span>Sheet</span><b id="sheetno">A-00 / 14</b></div>
