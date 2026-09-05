@@ -339,6 +339,151 @@ ol.src a{word-break:break-word}
 footer{padding:2.4rem 0 1.4rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.8rem}
 footer p{max-width:74ch}
 
+/* ================= CINEMATIC LAYER ================= */
+html,body{overflow-x:clip}
+.fullbleed{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:100vw;max-width:100vw}
+.fb-inner{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.6rem)}
+
+/* ---- cinematic cover ---- */
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:min(92vh,880px);display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(3rem,9vw,6rem) 0 clamp(2rem,5vw,3.4rem);border-top:none;
+}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:var(--ground)}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 34%;opacity:.66;
+  filter:saturate(.82) contrast(1.1)}
+.hero-veil{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(15,29,45,.62) 0%,rgba(15,29,45,.34) 30%,rgba(15,29,45,.9) 76%,var(--ground) 100%),
+  linear-gradient(90deg,rgba(15,29,45,.9) 0%,rgba(15,29,45,.25) 62%,rgba(15,29,45,.6) 100%)}
+.hero .swap-line{font-size:clamp(1.95rem,6.6vw,4.5rem)}
+.hero .lede{max-width:54ch;text-shadow:0 1px 24px rgba(6,14,24,.7)}
+.scrollcue{
+  display:flex;align-items:center;gap:.6rem;margin-top:2.2rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.scrollcue i{display:block;width:1px;height:26px;background:linear-gradient(var(--straw),transparent)}
+.js .scrollcue i{animation:cue 2.1s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.45);opacity:.5}50%{transform:scaleY(1);opacity:1}}
+
+/* ---- chapter cards ---- */
+.chapter{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:min(66vh,600px);display:flex;align-items:flex-end;
+  padding:clamp(3rem,8vw,6rem) 0 clamp(2.2rem,5vw,3.4rem);
+}
+.chapter img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;
+  opacity:.46;filter:saturate(.7) contrast(1.05)}
+.chapter .veil{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,var(--ground) 0%,rgba(15,29,45,.42) 40%,rgba(15,29,45,.88) 88%,var(--ground) 100%)}
+.chapter .act{
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--straw);margin:0 0 .8rem;
+}
+.chapter h2{font-size:clamp(2.3rem,7.4vw,5rem);margin:0 0 .7rem;
+  text-shadow:0 2px 30px rgba(6,14,24,.6)}
+.chapter p{font-size:1.16rem;color:var(--paper);max-width:52ch;margin:0;
+  text-shadow:0 1px 20px rgba(6,14,24,.75)}
+.credit{
+  position:absolute;right:.7rem;bottom:.5rem;z-index:1;
+  font-family:"IBM Plex Mono",monospace;font-size:.54rem;letter-spacing:.06em;
+  color:rgba(226,232,236,.42);text-transform:uppercase;
+}
+
+/* ---- video facade ---- */
+.vidcard{
+  position:relative;margin:1.8rem 0;border:1px solid var(--rule);border-radius:4px;
+  overflow:hidden;background:var(--sheet);
+}
+.vidcard .frame{position:relative;aspect-ratio:16/9;display:block;width:100%;padding:0;border:0;
+  background:var(--sheet-2);cursor:pointer;overflow:hidden}
+.vidcard .frame img{width:100%;height:100%;object-fit:cover;opacity:.82;
+  transition:opacity .35s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+.vidcard .frame:hover img,.vidcard .frame:focus-visible img{opacity:1;transform:scale(1.028)}
+.vidcard .play{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:74px;height:74px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(15,29,45,.62);border:1.5px solid rgba(232,237,240,.85);
+  backdrop-filter:blur(3px);transition:background .3s ease,transform .3s ease;
+}
+.vidcard .frame:hover .play{background:var(--straw);transform:translate(-50%,-50%) scale(1.07)}
+.vidcard .play svg{margin-left:4px}
+.vidcard .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1rem .75rem;
+  background:linear-gradient(transparent,rgba(10,20,31,.92));
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--paper);text-align:left;
+}
+.vidcard iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+
+/* ---- maps & drawn routes ---- */
+.mapwrap{position:relative}
+.mapwrap svg{display:block;width:100%;height:auto;overflow:visible}
+.fl-land{fill:#16293D;stroke:#2C455F;stroke-width:1.4;stroke-linejoin:round}
+.fl-arc{fill:none;stroke-linecap:round;stroke-width:2.4}
+.fl-arc.tpa{stroke:var(--tpa-lit)}
+.fl-arc.jax{stroke:var(--jax-lit)}
+.fl-arc.away{stroke:var(--jax-lit);stroke-width:2;opacity:.72}
+.js .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.5s cubic-bezier(.3,.7,.3,1)}
+.js .in .draw{stroke-dashoffset:0}
+.pin circle{stroke:var(--ground);stroke-width:2.5}
+.pin text{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.06em;
+  fill:var(--paper);text-transform:uppercase}
+.pin .sub{font-size:10.5px;fill:var(--ink-3)}
+.arclab{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.05em;fill:var(--ink-2)}
+.arclab.hot{fill:var(--tpa-lit)}
+.arclab.cold{fill:var(--jax-lit)}
+
+/* ---- present mode ---- */
+.presentbtn{
+  font-family:"IBM Plex Mono",monospace;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;
+  background:transparent;color:var(--paper);border:1px solid var(--rule);border-radius:2px;
+  padding:.42rem .7rem;cursor:pointer;transition:border-color .25s ease,color .25s ease;
+}
+.presentbtn:hover{border-color:var(--straw);color:var(--straw)}
+body.present{overflow:hidden}
+body.present main{max-width:none}
+body.present .sheet,body.present .chapter,body.present .hero,body.present footer{
+  display:none!important;
+}
+body.present .slide-on{
+  display:flex!important;flex-direction:column;
+  justify-content:flex-start;justify-content:safe center;
+  position:fixed;inset:0 0 52px;z-index:10;overflow-y:auto;overscroll-behavior:contain;
+  margin:0;width:100%;max-width:none;border-top:none;
+  padding:clamp(1.5rem,4vh,3rem) clamp(1.2rem,5vw,4.5rem);
+  background:var(--ground);
+  animation:slidein .42s cubic-bezier(.2,.7,.3,1) both;
+}
+@keyframes slidein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+body.present .slide-on.chapter,body.present .slide-on.hero{justify-content:flex-end;justify-content:safe flex-end}
+body.present .slide-on .sheet-grid{grid-template-columns:110px minmax(0,1fr)}
+body.present .rail{position:static}
+body.present .fullbleed{margin:0;width:100%}
+body.present .scrollcue{display:none}
+@media (max-width:820px){body.present .slide-on .sheet-grid{grid-template-columns:1fr}}
+.pnav{
+  position:fixed;left:0;right:0;bottom:52px;z-index:12;height:2px;background:var(--rule-soft);
+  display:none;
+}
+body.present .pnav{display:block}
+.pnav b{display:block;height:100%;background:var(--straw);width:0;transition:width .35s ease}
+.parrow{
+  position:fixed;top:50%;transform:translateY(-50%);z-index:13;display:none;
+  width:44px;height:64px;border:1px solid var(--rule);border-radius:3px;
+  background:rgba(19,38,57,.72);color:var(--paper);cursor:pointer;
+  align-items:center;justify-content:center;backdrop-filter:blur(6px);
+}
+body.present .parrow{display:flex}
+.parrow:hover{border-color:var(--straw);color:var(--straw)}
+.parrow.prev{left:.6rem}
+.parrow.next{right:.6rem}
+@media (max-width:700px){.parrow{width:34px;height:52px}}
+
+/* ---- animated counters keep their final value if JS is off ---- */
+.count{font-variant-numeric:tabular-nums}
+
 @media print{
   html,body{
     background:var(--ground)!important;
@@ -363,6 +508,15 @@ footer p{max-width:74ch}
   }
   ol.src li,.menu article,.concede li{break-inside:avoid;page-break-inside:avoid}
   .bar-fill{width:var(--w)!important}
+  .hero,.chapter{min-height:0;padding:8mm 0 6mm;break-inside:avoid;page-break-inside:avoid}
+  .chapter{break-before:page;page-break-before:always}
+  .hero-bg img,.chapter img{opacity:.34}
+  .fullbleed{margin:0;width:auto}
+  .vidcard iframe{display:none}
+  .presentbtn,.parrow,.pnav,.scrollcue{display:none!important}
+  .vidcard{break-inside:avoid;page-break-inside:avoid}
+  .mapwrap{break-inside:avoid;page-break-inside:avoid}
+  .draw{stroke-dashoffset:0!important;opacity:1!important}
   a{color:var(--blueprint)!important;text-decoration:none}
   footer{break-before:auto}
 }</style>
@@ -373,7 +527,11 @@ footer p{max-width:74ch}
 <div class="wrap">
 
 <!-- ============ COVER ============ -->
-<section class="sheet cover" id="a00">
+<section class="sheet cover hero fullbleed" id="a00">
+  <div class="hero-bg"><img src="media/skyline.jpg" alt="The downtown Tampa skyline across the Hillsborough River at dusk."></div>
+  <div class="hero-veil"></div>
+  <span class="credit">Tampa skyline &middot; Eric Statzer &middot; CC BY-SA 4.0</span>
+  <div class="fb-inner">
   <span class="rev">
     <svg width="11" height="10" viewBox="0 0 11 10" aria-hidden="true"><path d="M5.5 0 11 10H0z" fill="currentColor"/></svg>
     Revision 1 &nbsp;·&nbsp; issued for review
@@ -391,6 +549,8 @@ footer p{max-width:74ch}
     <div><dt>Prepared by</dt><dd>The friends who already lived in Jacksonville</dd></div>
     <div><dt>Issued</dt><dd>5 September 2026</dd></div>
   </dl>
+    <div class="scrollcue"><i></i> Fifteen sheets &middot; scroll, or hit Present</div>
+  </div>
 </section>
 
 <!-- ============ A-01 ============ -->
@@ -410,6 +570,17 @@ footer p{max-width:74ch}
     <p class="kicker">It compares two cities. Florida has more than two cities.</p>
   </div>
  </div>
+</section>
+
+<section class="chapter fullbleed" id="c1">
+  <img src="media/downtown.jpg" alt="Downtown Tampa seen from the water." loading="lazy">
+  <div class="veil"></div>
+  <span class="credit">Downtown Tampa &middot; Cl&eacute;ment Bardot &middot; CC BY-SA 4.0</span>
+  <div class="fb-inner">
+    <p class="act">Act one</p>
+    <h2>The Money</h2>
+    <p>Everybody agrees Miami is too expensive. The argument is about what you do with the difference.</p>
+  </div>
 </section>
 
 <!-- ============ A-02 — THE CENTRAL MOVE ============ -->
@@ -512,6 +683,8 @@ footer p{max-width:74ch}
 
     <p>Jacksonville wins this chart. It wins it by <strong>$47,855</strong>, which at current rates is a couple hundred dollars a month on a note.</p>
     <p>Against Miami that gap looks like the difference between two lives. Against Plant City it is the difference between two kitchens.</p>
+    <h3>What you are actually shopping for</h3>
+    <p>You have said you want a bigger house with a garage, and that is the whole point of leaving Miami. In Riverview, Plant City, Wesley Chapel and the Brandon corridor, a two-car garage is not an upgrade, it is what the house comes with. That is true in Jacksonville too. The difference is not what the house has. It is what is around it.</p>
   </div>
  </div>
 </section>
@@ -526,62 +699,80 @@ footer p{max-width:74ch}
     <p class="lede">Every sheet from here is priced against that number. If Jacksonville&rsquo;s discount is worth more than what follows, take it. It is a real city and that was a real argument.</p>
     <p>But you should see the other side of the ledger before you sign anything, and the Jacksonville deck never had reason to put it there. This is that list.</p>
     <ul class="chips">
-      <li class="star">A nonstop flight to Bogotá</li>
-      <li>65 fewer miles to your family</li>
+      <li class="star">Ninety minutes closer to your family, each way</li>
+      <li class="star">2.2&times; the market for two people starting over</li>
+      <li>A nonstop to Bogotá</li>
+      <li>A house with a garage</li>
       <li>An ocean you can get in during February</li>
-      <li>Roughly four times the Colombian population</li>
+      <li>573,299 people, in our town, every March</li>
       <li>Named cranes instead of a budget line</li>
       <li>A third of the homicides</li>
-      <li>Orlando in 90 minutes</li>
       <li>Us, twenty minutes away</li>
     </ul>
   </div>
  </div>
 </section>
 
-<!-- ============ A-05 — BOGOTA ============ -->
-<section class="sheet" id="a05">
- <div class="sheet-grid">
-  <div class="rail"><span class="tag">A-05</span><span class="ref">not in the deck</span></div>
-  <div>
-    <p class="eyebrow">The sheet that deck could not draw</p>
-    <h2>Tampa flies to Bogotá.<br>Jacksonville doesn&rsquo;t.</h2>
-    <p class="lede">This is the hardest fact in this document and it is not close. Avianca has flown Tampa to Bogotá nonstop since March 2025. It went daily that October. It now runs about twenty flights a week.</p>
-
-    <div class="vs">
-      <div>
-        <p class="hd">From Tampa</p>
-        <div class="route">
-          <span class="node">TPA</span><span class="leg"></span><span class="node">BOG</span>
-        </div>
-        <p class="big c-tpa">4h 00m</p>
-        <p>Nonstop, Avianca, A320neo. Roughly 20 departures a week. TPA&rsquo;s first scheduled nonstop to South America in nearly fifty years.<a class="cite" href="#src">[5]</a></p>
-      </div>
-      <div>
-        <p class="hd">From Jacksonville</p>
-        <div class="route">
-          <span class="node">JAX</span><span class="leg bad"></span><span class="node stop">MIA / ATL / PTY</span><span class="leg bad"></span><span class="node">BOG</span>
-        </div>
-        <p class="big c-jax">No such flight</p>
-        <p>JAX has two international nonstops: San Juan, which is a US territory, and Toronto, which is seasonal. Zero to South America.<a class="cite" href="#src">[6]</a></p>
-      </div>
-    </div>
-
-    <p>And it is not a gap anyone is racing to close. Jacksonville&rsquo;s airport authority commissioned a study on which nonstop international routes to chase next. The shortlist came back Dublin, Frankfurt, London, Paris, Reykjavík.<a class="cite" href="#src">[6]</a></p>
-    <p class="kicker">Not one South American city. Jacksonville is not planning to fly to your family. It is planning to fly to Iceland.</p>
-    <p>This is the sheet I would read twice. It is not about vacations. It is about whether family comes for a long weekend or comes once a year, because a connection through Atlanta quietly turns every visit into a production. Four hours, gate to gate, is a different relationship with the people you love than a connecting itinerary is.</p>
+<section class="chapter fullbleed" id="c2">
+  <img src="media/skyway.jpg" alt="The Sunshine Skyway Bridge crossing lower Tampa Bay." loading="lazy">
+  <div class="veil"></div>
+  <span class="credit">Sunshine Skyway &middot; public domain</span>
+  <div class="fb-inner">
+    <p class="act">Act two</p>
+    <h2>The Distance</h2>
+    <p>A house is a number. How often your family walks through the front door is a different kind of number.</p>
   </div>
- </div>
 </section>
 
-<!-- ============ A-06 — DISTANCE ============ -->
-<section class="sheet" id="a06">
+<!-- ============ A-05 — DISTANCE ============ -->
+<section class="sheet" id="a05">
  <div class="sheet-grid">
-  <div class="rail"><span class="tag">A-06</span><span class="ref">answers slide 10</span></div>
+  <div class="rail"><span class="tag">A-05</span><span class="ref">answers slide 10</span></div>
   <div>
-    <p class="eyebrow">345 versus 346</p>
-    <h2>From Jacksonville, Atlanta is farther than Miami by one mile.</h2>
-    <p class="lede">Slide 10 sells Jacksonville as a launchpad and lists St. Augustine, Amelia Island, Orlando and Savannah. Notice which city is not on that list.</p>
+    <p class="eyebrow">Everyone you love is in Miami</p>
+    <h2>From Jacksonville, Atlanta is closer than your family.</h2>
+    <p class="lede">Not almost. Closer by a mile. Slide 10 sells Jacksonville as a launchpad and lists St. Augustine, Amelia Island, Orlando and Savannah. Notice which city is not on that list.</p>
+    <p>This is the sheet that matters most, because your whole family is in one city and neither of these moves puts you in it. The only question is how far away you agree to be.</p>
+
+    <figure class="mapwrap reveal">
+      <p class="fig-t">Where each city actually sits</p>
+      <p class="fig-s">Road miles &middot; Tampa is the middle of the state, Jacksonville is a corner of it</p>
+      <svg viewBox="-8 -86 428 502" role="img" aria-labelledby="maptitle mapdesc">
+        <title id="maptitle">Map of Florida comparing drive distances to Miami</title>
+        <desc id="mapdesc">Tampa sits mid-peninsula, 280 road miles from Miami. Jacksonville sits in the northeast corner, 345 miles from Miami and 346 miles from Atlanta, which is off the top of the map.</desc>
+        <path class="fl-land" d="M 0.0 0.0 L 137.7 0.0 L 143.6 0.6 L 145.2 18.0 L 211.4 19.8 L 285.5 22.2 L 294.6 15.0 L 302.0 16.8 L 320.5 26.4 L 329.0 54.0 L 343.3 90.0 L 356.5 123.0 L 374.5 156.0 L 374.5 178.8 L 385.7 207.0 L 397.3 240.0 L 401.0 276.0 L 396.3 306.0 L 392.0 327.0 L 384.1 346.8 L 369.8 351.6 L 351.8 342.0 L 341.7 318.0 L 325.8 303.0 L 305.7 279.0 L 295.6 255.0 L 281.8 237.0 L 264.9 216.0 L 263.8 202.8 L 256.9 196.8 L 251.6 181.2 L 256.4 168.0 L 261.7 144.0 L 256.9 120.0 L 238.4 102.0 L 221.4 82.8 L 188.1 69.0 L 170.6 64.8 L 144.1 76.8 L 120.8 66.0 L 103.3 54.6 L 74.2 43.2 L 47.7 36.0 L 17.0 40.2 L 7.9 28.8 L 0.0 0.0 Z"/>
+        <path class="fl-arc away draw" d="M 315 40 C 277 -6 243 -30 211 -80"/>
+        <path class="fl-arc jax draw" d="M 315 40 C 377 136 445 222 393 314"/>
+        <path class="fl-arc tpa draw" d="M 272 183 C 306 251 321 344 393 314"/>
+        <text class="arclab cold" x="211" y="-64" text-anchor="middle">ATLANTA &middot; 346 MI &uarr;</text>
+        <text class="arclab cold" x="427" y="177" text-anchor="middle">345 MI</text>
+        <text class="arclab hot" x="300" y="268" text-anchor="middle">280 MI</text>
+        <g class="pin">
+          <circle cx="315" cy="40" r="6.5" fill="var(--jax-lit)"/>
+          <text x="302" y="36" text-anchor="end">Jacksonville</text>
+          <text class="sub" x="302" y="51" text-anchor="end">the corner</text>
+        </g>
+        <g class="pin">
+          <circle cx="272" cy="183" r="7.5" fill="var(--tpa-lit)"/>
+          <text x="258" y="179" text-anchor="end">Tampa</text>
+          <text class="sub" x="258" y="194" text-anchor="end">the middle</text>
+        </g>
+        <g class="pin">
+          <circle cx="291" cy="179" r="4" fill="var(--straw)"/>
+          <text class="sub" x="299" y="193">Plant City</text>
+        </g>
+        <g class="pin">
+          <circle cx="330" cy="148" r="4.5" fill="var(--ink-3)"/>
+          <text class="sub" x="339" y="152">Orlando</text>
+        </g>
+        <g class="pin">
+          <circle cx="393" cy="314" r="6.5" fill="var(--mia)"/>
+          <text x="380" y="318" text-anchor="end">Miami</text>
+          <text class="sub" x="380" y="333" text-anchor="end">everyone you love</text>
+        </g>
+      </svg>
+      <figcaption>Distances are road miles, not straight-line. The Atlanta line runs off the top of the state on purpose.<a class="cite" href="#src">[7]</a></figcaption>
+    </figure>
 
     <figure>
       <p class="fig-t">Driving distance to the people you are leaving behind</p>
@@ -604,8 +795,73 @@ footer p{max-width:74ch}
     </figure>
 
     <p>Move to Jacksonville and Georgia sits as close to you as everyone you are leaving in Miami. That is not a joke at anyone&rsquo;s expense. It is a coincidence of geography that happens to be perfect.</p>
-    <p>Tampa is a Saturday-morning drive from Miami. Leave after breakfast, be there for lunch. Jacksonville is a whole day, in each direction, which quietly turns every visit into a three-day commitment and turns most of them into no visit at all.</p>
-    <p class="kicker">And the rest of the state opens up: Orlando in about ninety minutes, Sarasota in under an hour, Fort Myers in two.<a class="cite" href="#src">[7]</a></p>
+    <p>Tampa is a Saturday-morning drive. Leave after breakfast, be there for lunch, and your kid falls asleep in the car on the way home that night. Jacksonville is five to six hours each way, which quietly turns every visit into a three-day commitment, and turns most of them into no visit at all.<a class="cite" href="#src">[7]</a></p>
+    <p class="kicker">Sixty-five miles does not sound like a relationship. Ninety minutes each way, forty weekends a year, for the next twenty years, is a relationship.</p>
+    <p>And the rest of the state opens up on top of it. Orlando in about ninety minutes, Sarasota in under an hour, Fort Myers in two.<a class="cite" href="#src">[7]</a></p>
+  </div>
+ </div>
+</section>
+
+<!-- ============ A-06 — BOGOTA ============ -->
+<section class="sheet" id="a06">
+ <div class="sheet-grid">
+  <div class="rail"><span class="tag">A-06</span><span class="ref">not in the deck</span></div>
+  <div>
+    <p class="eyebrow">And then there is Colombia</p>
+    <h2>Tampa flies to Bogotá.<br>Jacksonville doesn&rsquo;t.</h2>
+    <p class="lede">Your family is in Miami, so this one is a bonus rather than the argument. It is still the single cleanest fact in this document. Avianca has flown Tampa to Bogotá nonstop since March 2025. It went daily that October. It now runs about twenty flights a week.</p>
+
+    <figure class="mapwrap reveal">
+      <p class="fig-t">Getting to Bogot&aacute;</p>
+      <p class="fig-s">The same trip, from two Florida airports</p>
+      <svg viewBox="0 0 920 330" role="img" aria-labelledby="flt fld">
+        <title id="flt">Flight routes from Tampa and Jacksonville to Bogot&aacute;</title>
+        <desc id="fld">Tampa reaches Bogot&aacute; nonstop in four hours. Jacksonville has no nonstop and must connect through Miami, Atlanta or Panama City.</desc>
+        <path class="fl-arc tpa draw" d="M 130 92 C 330 26 620 118 792 250"/>
+        <path class="fl-arc away draw" d="M 130 196 C 250 268 350 296 452 298"/>
+        <path class="fl-arc away draw" d="M 512 298 C 620 296 720 278 792 250"/>
+        <g class="pin">
+          <circle cx="130" cy="92" r="7.5" fill="var(--tpa-lit)"/>
+          <text x="130" y="70" text-anchor="middle">TPA</text>
+        </g>
+        <g class="pin">
+          <circle cx="130" cy="196" r="6.5" fill="var(--jax-lit)"/>
+          <text x="130" y="230" text-anchor="middle">JAX</text>
+        </g>
+        <g class="pin">
+          <circle cx="792" cy="250" r="8.5" fill="var(--straw)"/>
+          <text x="792" y="288" text-anchor="middle">BOG</text>
+        </g>
+        <rect x="452" y="282" width="60" height="32" rx="3" fill="none" stroke="var(--jax)" stroke-width="1.2"/>
+        <text class="arclab cold" x="482" y="303" text-anchor="middle">STOP</text>
+        <text class="arclab hot" x="430" y="70" text-anchor="middle">4H 00M &middot; NONSTOP &middot; ~20&times; A WEEK</text>
+        <text class="arclab cold" x="300" y="264" text-anchor="middle">VIA MIA / ATL / PTY</text>
+      </svg>
+      <figcaption>Avianca has flown Tampa to Bogot&aacute; nonstop since March 2025. Jacksonville has no scheduled nonstop to South America.<a class="cite" href="#src">[5]</a></figcaption>
+    </figure>
+
+    <div class="vs">
+      <div>
+        <p class="hd">From Tampa</p>
+        <div class="route">
+          <span class="node">TPA</span><span class="leg"></span><span class="node">BOG</span>
+        </div>
+        <p class="big c-tpa">4h 00m</p>
+        <p>Nonstop, Avianca, A320neo. Roughly 20 departures a week. TPA&rsquo;s first scheduled nonstop to South America in nearly fifty years.<a class="cite" href="#src">[5]</a></p>
+      </div>
+      <div>
+        <p class="hd">From Jacksonville</p>
+        <div class="route">
+          <span class="node">JAX</span><span class="leg bad"></span><span class="node stop">MIA / ATL / PTY</span><span class="leg bad"></span><span class="node">BOG</span>
+        </div>
+        <p class="big c-jax">No such flight</p>
+        <p>JAX has two international nonstops: San Juan, which is a US territory, and Toronto, which is seasonal. Zero to South America.<a class="cite" href="#src">[6]</a></p>
+      </div>
+    </div>
+
+    <p>And it is not a gap anyone is racing to close. Jacksonville&rsquo;s airport authority commissioned a study on which nonstop international routes to chase next. The shortlist came back Dublin, Frankfurt, London, Paris, Reykjavík.<a class="cite" href="#src">[6]</a></p>
+    <p class="kicker">Not one South American city. Jacksonville is not planning to fly to your family. It is planning to fly to Iceland.</p>
+    <p>Nobody moves cities over a flight route. But your kid is five, and at some point you are going to want him to know where he is from, and the difference between a four-hour nonstop and a connection through Atlanta is the difference between going every couple of years and going once.</p>
   </div>
  </div>
 </section>
@@ -681,6 +937,13 @@ footer p{max-width:74ch}
       <figcaption>Scale runs 0 to 63°F. At the same latitude the Gulf runs roughly 3 to 5 degrees warmer than the Atlantic through the winter.<a class="cite" href="#src">[9]</a></figcaption>
     </figure>
 
+    <div class="vidcard">
+      <button class="frame" type="button" data-yt="nYsT6qbgbeI" aria-label="Play video: Play &middot; Clearwater Beach from the air &mdash; this is the water on sheet A-08">
+        <img src="media/beach.jpg" alt="Aerial view of Clearwater Beach and the Gulf." loading="lazy">
+        <span class="play" aria-hidden="true"><svg width="20" height="24" viewBox="0 0 20 24"><path d="M0 0 20 12 0 24Z" fill="currentColor"/></svg></span>
+        <span class="cap">Play &middot; Clearwater Beach from the air &mdash; this is the water on sheet A-08</span>
+      </button>
+    </div>
     <p>Four degrees does not sound like an argument until you are the parent standing in it. But temperature is the smaller half of this.</p>
     <p>The Gulf here is shallow, flat and slow. A five-year-old can walk out a long way and the water stays at his chest. North Florida&rsquo;s Atlantic has surf, and shore break, and rip currents, which is genuinely wonderful if you are twenty-two with a board and genuinely tiring if you are the one watching a kindergartener in it.</p>
     <p class="kicker">That is a beach for the man you were. This is a beach for the man with a five-year-old.</p>
@@ -688,14 +951,66 @@ footer p{max-width:74ch}
  </div>
 </section>
 
+<section class="chapter fullbleed" id="c3">
+  <img src="media/ybor.jpg" alt="Seventh Avenue in Ybor City, Tampa." loading="lazy">
+  <div class="veil"></div>
+  <span class="credit">7th Avenue, Ybor City &middot; Eric Statzer &middot; CC BY-SA 4.0</span>
+  <div class="fb-inner">
+    <p class="act">Act three</p>
+    <h2>The Work</h2>
+    <p>Three careers restart the day you sign. The only question is how big a city they restart in.</p>
+  </div>
+</section>
+
 <!-- ============ A-09 — ARCHITECT ============ -->
 <section class="sheet" id="a09">
  <div class="sheet-grid">
   <div class="rail"><span class="tag">A-09</span><span class="ref">answers slide 05</span></div>
   <div>
-    <p class="eyebrow">For the architect</p>
-    <h2>That was a budget line. These are cranes.</h2>
-    <p class="lede">Slide 5 leads with $1.23 billion, Jacksonville&rsquo;s five-year capital improvement plan. That is a line in a municipal budget. It is not a project, it is a projection, and you have been in this business long enough to know the difference.</p>
+    <p class="eyebrow">Both of you start over</p>
+    <h2>You are not moving one career. You are moving three.</h2>
+    <p class="lede">Diego needs a firm. Naty rebuilds a client list from nothing. And the embroidery and printing business needs a market. That is the true price of this move, and I want to say plainly that it is the same price in either city.</p>
+    <p>So the only honest question left is which city gives you more to rebuild into. That question has a number attached to it.</p>
+
+    <div class="stat-row">
+      <div class="stat"><span class="stat-n c-tpa">3,040,000</span><span class="stat-l">Tampa Bay<br>metro population</span></div>
+      <div class="stat"><span class="stat-n c-jax">1,360,000</span><span class="stat-l">Jacksonville<br>metro population</span></div>
+      <div class="stat"><span class="stat-n c-straw">2.2&times;</span><span class="stat-l">More people to<br>rebuild into</span></div>
+    </div>
+    <p>Tampa Bay is not slightly bigger. It holds 1.68 million more people than metro Jacksonville, which is roughly another whole Jacksonville and then some.<a class="cite" href="#src">[13]</a></p>
+
+    <h3>For Naty</h3>
+    <p>Her clients are ten to twelve minutes from the front door and her schedule is as good as a schedule gets. Any move breaks that. The Jacksonville version of this move breaks it exactly as badly, so nobody gets to count it as a point against Tampa.</p>
+    <p>What differs is the thing she rebuilds into. Same work, same word of mouth, same slow first year, into a market more than twice the size and dense enough that a ten-minute radius still contains a real book of business. If she is going to pay the cost of starting over once, she should only have to do it once.</p>
+
+    <h3>For the business</h3>
+    <p>Embroidery and 3D printing are demand businesses. They need crowds, teams, events, schools and small manufacturers within driving range, and this comparison is not close either.</p>
+
+    <div class="menu">
+      <article>
+        <h4>The Strawberry Festival</h4>
+        <span class="px">573,299 guests &middot; 2026</span>
+        <p>Eleven days, in Plant City, ten minutes from our house. The best-attended festival in Florida, and it happens in the town I am telling you to move to.<a class="cite" href="#src">[14]</a></p>
+      </article>
+      <article>
+        <h4>Gasparilla</h4>
+        <span class="px">~300,000 &middot; every January</span>
+        <p>A pirate invasion the size of a mid-sized city, and every krewe, boat and bar in it wants something with a logo on it.<a class="cite" href="#src">[14]</a></p>
+      </article>
+      <article>
+        <h4>Three pro teams, not one</h4>
+        <span class="px">Bucs &middot; Lightning &middot; Rays</span>
+        <p>Plus the Rowdies. Jacksonville has the Jaguars. Youth leagues, booster clubs and bar merch follow the teams, and there are three times as many of them here.</p>
+      </article>
+      <article>
+        <h4>Conventions and corporate</h4>
+        <span class="px">Downtown &middot; year-round</span>
+        <p>The Tampa Convention Center, Amalie Arena and the Water Street district next door run events continuously. Badges, uniforms, giveaways and prototypes all have to come from somewhere.</p>
+      </article>
+    </div>
+
+    <h3>For Diego</h3>
+    <p>Slide 5 leads with $1.23 billion, Jacksonville&rsquo;s five-year capital improvement plan. That is a line in a municipal budget. It is not a project, it is a projection, and you have been in this business long enough to know the difference.</p>
     <p>Here is what is under construction in Tampa Bay right now, by name.</p>
 
     <div class="menu">
@@ -732,8 +1047,14 @@ footer p{max-width:74ch}
     </div>
     <p style="margin-top:.4rem">All of it verifiable, all of it named, all of it hiring.<a class="cite" href="#src">[10]</a></p>
 
-    <h3>If you are bringing your own work</h3>
-    <p>Then ignore this entire sheet, because it does not apply to you, and go back to A-05. If your practice travels with you, the only thing your city owes you is a good airport and a short drive to your clients, and Tampa wins both of those outright.</p>
+    <div class="vidcard">
+      <button class="frame" type="button" data-yt="juNo7RduTD4" aria-label="Play video: Play &middot; Gasworx under construction between Ybor and downtown">
+        <img src="media/gasworx.jpg" alt="Construction under way at the Gasworx district in Tampa." loading="lazy">
+        <span class="play" aria-hidden="true"><svg width="20" height="24" viewBox="0 0 20 24"><path d="M0 0 20 12 0 24Z" fill="currentColor"/></svg></span>
+        <span class="cap">Play &middot; Gasworx under construction between Ybor and downtown</span>
+      </button>
+    </div>
+    <p class="kicker">Three careers restarting at once is a lot to ask of a city. Ask it of the bigger one.</p>
   </div>
  </div>
 </section>
@@ -779,6 +1100,13 @@ footer p{max-width:74ch}
         <p>A national historic landmark district built by Cuban and Spanish and Italian cigar workers, now being sewn back into downtown by Gasworx. Bring a camera.</p>
       </article>
     </div>
+    <div class="vidcard">
+      <button class="frame" type="button" data-yt="dMxfx516FA4" aria-label="Play video: Play &middot; The Tampa Riverwalk, end to end">
+        <img src="media/riverwalk.jpg" alt="The Tampa Riverwalk along the Hillsborough River." loading="lazy">
+        <span class="play" aria-hidden="true"><svg width="20" height="24" viewBox="0 0 20 24"><path d="M0 0 20 12 0 24Z" fill="currentColor"/></svg></span>
+        <span class="cap">Play &middot; The Tampa Riverwalk, end to end</span>
+      </button>
+    </div>
     <p style="margin-top:.4rem">And St. Petersburg exists and is lovely and I am deliberately not pitching it, because you two want a yard and a garage, not a walk-up near a pier.</p>
   </div>
  </div>
@@ -804,6 +1132,17 @@ footer p{max-width:74ch}
     <p class="kicker">Neither city is a war zone and nobody should pretend otherwise. But this sheet was not in the deck, and it belongs in the decision.</p>
   </div>
  </div>
+</section>
+
+<section class="chapter fullbleed" id="c4">
+  <img src="media/theatre.jpg" alt="The atmospheric ceiling of the Tampa Theatre." loading="lazy">
+  <div class="veil"></div>
+  <span class="credit">Tampa Theatre &middot; MatthewHoobin &middot; CC BY-SA 4.0</span>
+  <div class="fb-inner">
+    <p class="act">Act four</p>
+    <h2>The Verdict</h2>
+    <p>Five things Jacksonville does better, the storm question answered straight, and the scorecard.</p>
+  </div>
 </section>
 
 <!-- ============ A-12 — NO PROPAGANDA ============ -->
@@ -859,6 +1198,8 @@ footer p{max-width:74ch}
           <tr><td>Storm risk</td><td class="tie">Toss-up</td><td class="tie">Lower frequency there, lower premiums here</td></tr>
           <tr><td>Surf</td><td class="lose">Jacksonville</td><td class="tie">Not close</td></tr>
           <tr><td>Traffic</td><td class="lose">Jacksonville</td><td class="tie">Not close, and we feel it daily</td></tr>
+          <tr><td>Market to rebuild two careers in</td><td class="win">Tampa Bay</td><td class="tie">2.2&times; the metro population</td></tr>
+          <tr><td>Events and crowds for the business</td><td class="win">Tampa Bay</td><td class="tie">573,299 in Plant City alone, every March</td></tr>
           <tr><td>Getting to Bogotá</td><td class="win">Tampa Bay</td><td class="tie">Nonstop versus nonexistent</td></tr>
           <tr><td>Getting to Miami</td><td class="win">Tampa Bay</td><td class="tie">65 miles and about 90 minutes</td></tr>
           <tr><td>Colombian community</td><td class="win">Tampa Bay</td><td class="tie">Not close</td></tr>
@@ -888,6 +1229,7 @@ footer p{max-width:74ch}
     <h2>We lived in Jacksonville.<br>Then we moved here.</h2>
     <p class="lede">That is the whole close and I am not going to dress it up.</p>
     <p>That deck argues from a brochure, and it argues well. We are arguing from a lease, a mortgage, a moving truck and a decision we made with our own money about where to raise our own kid. We ran the experiment. We had the house, and the beach forty minutes away, and every reason to believe it would be great.</p>
+    <p>You are about to restart two careers and a business in the same month. That is a hard year no matter where the truck stops. Do it once, and do it in the city that gives you the most to restart into, ninety minutes closer to every person you are related to.</p>
     <p>Then we packed it up and drove two hundred miles southwest, and we have not spent one evening since wondering whether we got that wrong.</p>
     <p class="kicker">Everything on these fifteen sheets is a number you can check. This last part is the only thing I am asking you to take on faith, and it is the part I am most sure about.</p>
 
@@ -895,6 +1237,7 @@ footer p{max-width:74ch}
       <h4>The actual offer</h4>
       <p>Come for a weekend. Not a tour, a weekend. Fly into Tampa, four hours from Bogotá whenever family comes, and stay with us in Plant City.</p>
       <p>Saturday we do Ybor and downtown, and Diego can decide for himself whether there is work here. Sunday morning we take the kids to the Gulf, where the water is flat and warm and comes up to their chests a hundred feet out. Sunday lunch is at Los 3 Parces in Brandon, and I am going to let the name of that restaurant do the closing argument for me.</p>
+      <p>And if you come in early March, come during the Strawberry Festival, walk the grounds, and count the booths selling shirts. Then tell me there is nothing here for the two of you.</p>
       <p>Then drive down to Miami on Sunday evening. It is four hours. You will be home for dinner, which is the entire point.</p>
     </div>
 
@@ -918,12 +1261,14 @@ footer p{max-width:74ch}
       <li>Zillow Home Value Index, 2026: Miami $581,864; Lutz $491,899; Brandon $356,875; Plant City $343,765; Jacksonville $295,910. <a href="https://www.zillow.com/home-values/">zillow.com/home-values</a></li>
       <li>Tampa International Airport and Avianca: nonstop TPA–BOG launched 30 March 2025 on the A320neo, roughly four hours, daily from October 2025, about twenty weekly flights as of September 2026. <a href="https://news.tampaairport.com/tpa-celebrates-nonstop-service-to-bogota-with-avianca/">news.tampaairport.com</a></li>
       <li>Jacksonville International Airport international service and route targets, Jacksonville Today, 3 April 2026; Jacksonville Aviation Authority via the Campbell-Hill route study: Dublin, Frankfurt, London, Paris, Reykjavík. <a href="https://jaxtoday.org/2026/04/03/overseas-flights-where-might-you-go-from-jax/">jaxtoday.org</a></li>
-      <li>Driving distances: Jacksonville–Miami 345 mi; Jacksonville–Atlanta 346 mi; Tampa–Miami 280 mi, about 3h55m. Travelmath and Trippy road-distance calculators.</li>
+      <li>Driving distances and times: Jacksonville–Miami 345 mi, roughly 5 to 6 hours on I-95 depending on traffic; Jacksonville–Atlanta 346 mi; Tampa–Miami 280 mi, about 3h55m; Tampa–Orlando about 1h30; Tampa–Sarasota under an hour. Travelmath, Trippy and Lazytrips road-distance calculators.</li>
       <li>Colombian population: roughly 85,000 across the Tampa Bay and greater Orlando metros, second-largest US concentration after Miami; Florida holds about 30% of the US Colombian diaspora. Migration Policy Institute and Latina Republic. <a href="https://www.migrationpolicy.org/article/colombian-immigrants-united-states">migrationpolicy.org</a></li>
       <li>February water temperature: Clearwater Beach about 63°F; Jacksonville Beach about 58.8°F. NOAA-derived buoy and satellite averages via seatemperature.info and surf-forecast.com.</li>
       <li>Tampa Bay project pipeline 2026: Water Street Phase Two, Gasworx, Midtown Phase Two, Tampa General expansion, Westshore Marina District. Tampa Bay Business &amp; Wealth, December 2025; Water Street Tampa project progress; Davron 2026 pipeline report.</li>
       <li>Homicides: Jacksonville 74 in 2025, below 100 in 2024 for the first time since 2011; Tampa 17 in 2025 with the overall crime rate down 31% year over year. City reporting compiled via jaxcrimdefense.com and city-data.</li>
       <li>Insurance and storms: Hillsborough/Pinellas/Pasco homeowners premiums roughly $3,285–$5,100 a year against Duval County’s $3,800–$5,500. Hurricane Helene, September 2024, $13.9B in damage and record Tampa Bay surge. Hurricane Milton, October 2024, made landfall near Siesta Key, south of Tampa Bay, with one-in-a-thousand-year rainfall over parts of the bay. The last direct hit on Tampa Bay by a major hurricane was the Tarpon Springs storm of 25 October 1921, 103 years earlier. GreatFlorida county rate tables; NOAA National Weather Service Tampa Bay; NOAA National Hurricane Center tropical cyclone reports. <a href="https://www.weather.gov/tbw/hurricane1921">weather.gov/tbw/hurricane1921</a></li>
+      <li>Metro population, 2025: Tampa&ndash;St. Petersburg&ndash;Clearwater 3,040,000; Jacksonville 1,360,000. Macrotrends metro series from United Nations World Urbanization Prospects and US Census data.</li>
+      <li>Event attendance: Florida Strawberry Festival, Plant City, 573,299 guests over the 2026 event, reported by the festival as a record and the best-attended festival in Florida; Gasparilla Pirate Festival, Tampa, attendance around 300,000. <a href="https://flstrawberryfestival.com/florida-strawberry-festival-reports-attendance-for-2026-event/">flstrawberryfestival.com</a></li>
     </ol>
     <p style="margin-top:1.6rem;color:var(--ink-3);font-size:.9rem">Where the two documents disagree on a number, distrust mine first, because I am the one with something to gain. Every figure above is linked or nameable so you can check me. Please check me.</p>
   </div>
@@ -937,45 +1282,188 @@ footer p{max-width:74ch}
 </div>
 </main>
 
+<div class="pnav"><b id="pbar"></b></div>
+<button class="parrow prev" id="pprev" type="button" aria-label="Previous sheet">&#8592;</button>
+<button class="parrow next" id="pnext" type="button" aria-label="Next sheet">&#8594;</button>
+
 <div class="tblock" role="contentinfo">
   <div><span>Project</span><b>Miami &rarr; Tampa Bay</b></div>
   <div class="hide-s"><span>Issued for</span><b>Review by Naty &amp; Diego</b></div>
   <div class="hide-s"><span>Date</span><b>2026-09-05</b></div>
   <div><span>Sheet</span><b id="sheetno">A-00 / 14</b></div>
+  <div><button class="presentbtn" id="pbtn" type="button">Present</button></div>
 </div>
 
 <script>
-document.documentElement.classList.add('js');
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Bars grow from zero when their figure first comes into view.
-var reveals = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  /* ---- drawn SVG routes need their own path length ---- */
+  document.querySelectorAll('.draw').forEach(function (path) {
+    try { path.style.setProperty('--len', Math.ceil(path.getTotalLength()) + 'px'); }
+    catch (e) { path.classList.remove('draw'); }
+  });
+
+  /* ---- animate a figure the first time it is seen ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        e.target.querySelectorAll('.count').forEach(runCount);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(function (r) { io.observe(r); });
+  } else {
+    reveals.forEach(function (r) { r.classList.add('in'); });
+  }
+
+  /* ---- count up to the value already printed in the HTML ---- */
+  var NUM = /^([+\-−$]*)([\d,]+(?:\.\d+)?)(%?)$/;
+  function runCount(el) {
+    if (reduce || el.dataset.done) return;
+    var m = el.textContent.trim().match(NUM);
+    if (!m || el.textContent.trim().length > 9) return;
+    el.dataset.done = '1';
+    var pre = m[1], suf = m[3], raw = m[2];
+    var target = parseFloat(raw.replace(/,/g, ''));
+    var dec = (raw.split('.')[1] || '').length;
+    var group = raw.indexOf(',') > -1;
+    var t0 = null, dur = 1100;
+    function frame(t) {
+      if (t0 === null) t0 = t;
+      var k = Math.min((t - t0) / dur, 1);
+      var v = target * (1 - Math.pow(1 - k, 3));
+      var out = dec ? v.toFixed(dec) : String(Math.round(v));
+      if (group) out = Number(out).toLocaleString('en-US');
+      el.textContent = pre + out + suf;
+      if (k < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  document.querySelectorAll('.hero-stat b, .stat-n').forEach(function (el) {
+    if (NUM.test(el.textContent.trim()) && el.textContent.trim().length <= 9) el.classList.add('count');
+  });
+  if ('IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        runCount(e.target);
+        co.unobserve(e.target);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.count').forEach(function (el) { co.observe(el); });
+  }
+
+  /* ---- video plays only when asked ---- */
+  document.querySelectorAll('.vidcard .frame').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.dataset.yt, card = btn.parentNode;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+      f.title = 'Video';
+      f.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
+      f.allowFullscreen = true;
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      card.replaceChild(f, btn);
     });
-  }, { threshold: 0.25 });
-  reveals.forEach(function (r) { io.observe(r); });
-} else {
-  reveals.forEach(function (r) { r.classList.add('in'); });
-}
+  });
 
-// Title block tracks the sheet you are reading.
-var sheets = Array.prototype.slice.call(document.querySelectorAll('.sheet'));
-var out = document.getElementById('sheetno');
-function currentSheet() {
-  var y = window.scrollY + window.innerHeight * 0.32, id = sheets[0].id;
-  for (var i = 0; i < sheets.length; i++) { if (sheets[i].offsetTop <= y) id = sheets[i].id; }
-  return id.replace('a', 'A-').toUpperCase() + ' / 14';
-}
-var ticking = false;
-function onScroll() {
-  if (ticking) return;
-  ticking = true;
-  requestAnimationFrame(function () { out.textContent = currentSheet(); ticking = false; });
-}
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
+  /* ---- sheets, for both the title block and present mode ---- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero, .chapter, .sheet'));
+  var numbered = slides.filter(function (el) { return /^a\d+$/.test(el.id); });
+  var out = document.getElementById('sheetno');
+  var total = numbered.length - 1;
+
+  function label(el) {
+    if (/^a\d+$/.test(el.id)) return el.id.replace('a', 'A-') + ' / ' + (total < 10 ? '0' : '') + total;
+    var act = el.querySelector('.act');
+    return act ? act.textContent.toUpperCase() : 'COVER';
+  }
+
+  /* ---- title block follows the scroll ---- */
+  var ticking = false;
+  function onScroll() {
+    if (ticking || document.body.classList.contains('present')) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.scrollY + window.innerHeight * 0.3, cur = slides[0];
+      for (var i = 0; i < slides.length; i++) if (slides[i].offsetTop <= y) cur = slides[i];
+      out.textContent = label(cur);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---- present mode ---- */
+  var idx = 0, body = document.body;
+  var bar = document.getElementById('pbar');
+  var btn = document.getElementById('pbtn');
+
+  function show(n) {
+    idx = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (el, i) { el.classList.toggle('slide-on', i === idx); });
+    var cur = slides[idx];
+    cur.scrollTop = 0;
+    out.textContent = label(cur);
+    bar.style.width = ((idx + 1) / slides.length * 100) + '%';
+    cur.querySelectorAll('.reveal').forEach(function (r) {
+      r.classList.add('in');
+      r.querySelectorAll('.count').forEach(runCount);
+    });
+  }
+  function enter() {
+    var y = window.scrollY + window.innerHeight * 0.3, n = 0;
+    for (var i = 0; i < slides.length; i++) if (slides[i].offsetTop <= y) n = i;
+    body.classList.add('present');
+    btn.textContent = 'Exit';
+    show(n);
+  }
+  function exit() {
+    var cur = slides[idx];
+    body.classList.remove('present');
+    btn.textContent = 'Present';
+    slides.forEach(function (el) { el.classList.remove('slide-on'); });
+    cur.scrollIntoView();
+    onScroll();
+  }
+  btn.addEventListener('click', function () {
+    body.classList.contains('present') ? exit() : enter();
+  });
+  document.getElementById('pprev').addEventListener('click', function () { show(idx - 1); });
+  document.getElementById('pnext').addEventListener('click', function () { show(idx + 1); });
+
+  document.addEventListener('keydown', function (e) {
+    var p = body.classList.contains('present');
+    if (e.key === 'Escape' && p) { exit(); return; }
+    if ((e.key === 'p' || e.key === 'P') && !/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) {
+      p ? exit() : enter(); return;
+    }
+    if (!p) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(idx + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(idx - 1); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) {
+    if (!body.classList.contains('present')) return;
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null || !body.classList.contains('present')) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 62 && Math.abs(dx) > Math.abs(dy) * 1.6) show(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+
+})();
 </script>
 </body>
 </html>

@@ -20,7 +20,14 @@ We lived in Jacksonville. We left. This is the third column.
 | File | |
 |---|---|
 | `index.html` | The whole site. No build step, no dependencies, one file. |
+| `media/` | Photographs and video poster frames. Credits in `ATTRIBUTION.md`. |
 | `Tampa_Rebuttal.pdf` | Print export, for reading next to the original deck. |
+
+### Present mode
+
+Press **P**, or the Present button in the title block, and the page becomes a
+fullscreen deck: arrow keys, space, or swipe to move between sheets, Escape to
+go back to scrolling. Same document, two ways to read it.
 
 ### On the numbers
 
